@@ -10,19 +10,21 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class GoToMainPage implements Command {
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = request.getSession();
 
         if(session == null) {
-            response.sendRedirect("Controller?command=gotoindexpage&message=eeerrror2");
+            response.sendRedirect("Controller?command=gotologinpage&message=eeerrror2");
             return;
         }
 
         Boolean isAuth = (Boolean) session.getAttribute("auth");
 
         if (isAuth == null || !isAuth) {
-            response.sendRedirect("Controller?command=gotoindexpage&message=eeerrror");
+            response.sendRedirect("Controller?command=gotologinpage&message=eeerrror");
             return;
         }
 

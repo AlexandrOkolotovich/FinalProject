@@ -1,6 +1,11 @@
 package by.jwd.restaurant.controller.command;
 
 public enum CommandName {
-    LOGINATION,
+    LOGIN,
+    LOGOUT,
+    GOTOLOGINPAGE,
+    GOTOMAINPAGE,
+    SAVENEWUSER,
     REGISTRATION
+
 }

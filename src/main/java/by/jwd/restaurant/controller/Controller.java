@@ -2,6 +2,7 @@ package by.jwd.restaurant.controller;
 
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.controller.command.CommandProvider;
+import by.jwd.restaurant.exception.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,10 @@ public class Controller extends HttpServlet {
         name = request.getParameter("command");
         command = provider.takeCommand(name);
 
-        command.execute(request, response);
+        try {
+            command.execute(request, response);
+        } catch (ServiceException e) {
+            response.sendRedirect("Controller?command=gotologinpage&message=wrong in registration");//Controller?command=gotoindexpage&message=wrong in registration
+        }
     }
 }
