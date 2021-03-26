@@ -2,7 +2,7 @@ package by.jwd.restaurant.controller.command.impl;
 
 import by.jwd.restaurant.bean.RegistrationInfo;
 import by.jwd.restaurant.controller.command.Command;
-import by.jwd.restaurant.exception.ServiceException;
+import by.jwd.restaurant.service.exception.ServiceException;
 import by.jwd.restaurant.service.ServiceProvider;
 import by.jwd.restaurant.service.UserService;
 
@@ -32,7 +32,6 @@ public class Registration implements Command {
         ServiceProvider provider = ServiceProvider.getInstance();
         UserService userService = provider.getUserService();
 
-
         try {
             userService.registration(registrationInfo);
 
@@ -40,7 +39,6 @@ public class Registration implements Command {
             session.setAttribute("auth", true);
             response.sendRedirect("Controller?command=gotomainpage");
         } catch (ServiceException e) {
-             e.printStackTrace();
             response.sendRedirect("Controller?command=gotologinpage&message=wrong in registration");//Controller?command=gotoindexpage&message=wrong in registration
 
         }

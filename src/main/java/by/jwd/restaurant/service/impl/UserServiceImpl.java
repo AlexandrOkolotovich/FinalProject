@@ -4,8 +4,8 @@ import by.jwd.restaurant.bean.RegistrationInfo;
 import by.jwd.restaurant.dao.DAOProvider;
 import by.jwd.restaurant.dao.UserDAO;
 import by.jwd.restaurant.entity.User;
-import by.jwd.restaurant.exception.DAOException;
-import by.jwd.restaurant.exception.ServiceException;
+import by.jwd.restaurant.dao.exception.DAOException;
+import by.jwd.restaurant.service.exception.ServiceException;
 import by.jwd.restaurant.service.UserService;
 import by.jwd.restaurant.service.validation.UserValidator;
 
@@ -49,6 +49,21 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    private boolean freeLogin(String login) throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        UserDAO userDAO = provider.getUserDAO();
+
+        Integer id;
+
+        try {
+            id = userDAO.findId(login);
+        } catch (DAOException e) {
+            throw new ServiceException("Id search error", e);
+        }
+
+        return id == null;
+    }
+
     public boolean validateAuthorizationInfo(String login, String password) throws ServiceException {
         if(!UserValidator.validateEmail(login)){
             throw new ServiceException("wrong email");
@@ -78,20 +93,5 @@ public class UserServiceImpl implements UserService {
         }
 
         return true;
-    }
-
-    private boolean freeLogin(String login) throws ServiceException {
-        DAOProvider provider = DAOProvider.getInstance();
-        UserDAO userDAO = provider.getUserDAO();
-
-        Integer id;
-
-        try {
-            id = userDAO.findId(login);
-        } catch (DAOException e) {
-            throw new ServiceException();
-        }
-
-        return id == null;
     }
 }

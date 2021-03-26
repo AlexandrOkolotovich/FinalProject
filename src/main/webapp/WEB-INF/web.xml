@@ -3,6 +3,10 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
@@ -18,5 +22,40 @@
     <servlet-name>MyController</servlet-name>
     <url-pattern>/Controller</url-pattern>
   </servlet-mapping>
+
+  <filter>
+    <display-name>RequestLoggingFilter</display-name>
+    <filter-name>RequestLoggingFilter</filter-name>
+    <filter-class>by.jwd.restaurant.controller.filter.RequestLoggingFilter</filter-class>
+  </filter>
+
+  <filter>
+    <display-name>CharsetFilter</display-name>
+    <filter-name>CharsetFilter</filter-name>
+    <filter-class>by.jwd.restaurant.controller.filter.CharsetFilter</filter-class>
+    <init-param>
+      <param-name>characterEncoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>CharsetFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>RequestLoggingFilter</filter-name>
+    <url-pattern>/Controller</url-pattern>
+  </filter-mapping>
+  
+  <listener>
+    <listener-class>by.jwd.restaurant.controller.listener.ProjectRequestListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>by.jwd.restaurant.controller.listener.ContextListener</listener-class>
+  </listener>
+
 </web-app>
 

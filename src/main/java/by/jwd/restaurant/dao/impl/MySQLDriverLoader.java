@@ -1,6 +1,6 @@
 package by.jwd.restaurant.dao.impl;
 
-import by.jwd.restaurant.exception.DBDriverLoadingException;
+import by.jwd.restaurant.dao.exception.DBDriverLoadingException;
 
 public class MySQLDriverLoader {
     private static final MySQLDriverLoader instance = new MySQLDriverLoader();

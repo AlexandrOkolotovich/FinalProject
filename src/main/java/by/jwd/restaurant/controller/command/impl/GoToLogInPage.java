@@ -1,7 +1,7 @@
 package by.jwd.restaurant.controller.command.impl;
 
 import by.jwd.restaurant.controller.command.Command;
-import by.jwd.restaurant.exception.ServiceException;
+import by.jwd.restaurant.service.exception.ServiceException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

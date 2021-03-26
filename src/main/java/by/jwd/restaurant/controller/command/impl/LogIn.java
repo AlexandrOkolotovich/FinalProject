@@ -3,7 +3,7 @@ package by.jwd.restaurant.controller.command.impl;
 import by.jwd.restaurant.constant.RequestParameters;
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.entity.User;
-import by.jwd.restaurant.exception.ServiceException;
+import by.jwd.restaurant.service.exception.ServiceException;
 import by.jwd.restaurant.service.ServiceProvider;
 import by.jwd.restaurant.service.UserService;
 

@@ -2,7 +2,7 @@ package by.jwd.restaurant.controller;
 
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.controller.command.CommandProvider;
-import by.jwd.restaurant.exception.ServiceException;
+import by.jwd.restaurant.service.exception.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
