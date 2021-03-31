@@ -11,11 +11,14 @@ public class CommandProvider {
 
     public CommandProvider(){
         commands.put(CommandName.GOTOLOGINPAGE, new GoToLogInPage());
+        commands.put(CommandName.GOTOHOMEPAGE, new GoToHomePage());
         commands.put(CommandName.REGISTRATION, new GoToRegistrationPage());
         commands.put(CommandName.LOGIN, new LogIn());
         commands.put(CommandName.LOGOUT, new LogOut());
         commands.put(CommandName.SAVENEWUSER, new Registration());
         commands.put(CommandName.GOTOMAINPAGE, new GoToMainPage());
+        commands.put(CommandName.EN, new ChangeLocale());
+        commands.put(CommandName.RU, new ChangeLocale());
     }
 
     public Command takeCommand(String name){

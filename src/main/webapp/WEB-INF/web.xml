@@ -39,6 +39,8 @@
     </init-param>
   </filter>
 
+
+
   <filter-mapping>
     <filter-name>CharsetFilter</filter-name>
     <url-pattern>/*</url-pattern>
@@ -48,6 +50,8 @@
     <filter-name>RequestLoggingFilter</filter-name>
     <url-pattern>/Controller</url-pattern>
   </filter-mapping>
+
+
   
   <listener>
     <listener-class>by.jwd.restaurant.controller.listener.ProjectRequestListener</listener-class>
@@ -56,6 +60,14 @@
   <listener>
     <listener-class>by.jwd.restaurant.controller.listener.ContextListener</listener-class>
   </listener>
+
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/tld/localization.tld</taglib-uri>
+      <taglib-location>/tld/localization.tld</taglib-location>
+    </taglib>
+
+  </jsp-config>
 
 </web-app>
 

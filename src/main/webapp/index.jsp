@@ -6,6 +6,6 @@
     <title>Index</title>
 </head>
 <body>
-    <% response.sendRedirect("Controller?command=gotologinpage"); %>
+    <% response.sendRedirect("Controller?command=gotohomepage"); %>
 </body>
 </html>

@@ -15,7 +15,7 @@
     <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="part/header.jsp"/>
 <h1 align="center">
     !!! Welcome !!!
 </h1>
