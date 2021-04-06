@@ -3359,6 +3359,14 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	line-height: 1.8;
 }
 
+.txt36{
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 22px;
+    color: #222222;
+    line-height: 1.5;
+}
+
 
 /*[ Color ]
 -----------------------------------------------------------
@@ -3695,17 +3703,17 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 -----------------------------------------------------------
 */
 .bg1-pattern {
-	background-image: url(../images/icons/pattern1.png);
+	background-image: url(../../static/img/icons/pattern1.png);
   	background-repeat: repeat;
 }
 
 .bg2-pattern {
-	background-image: url(../images/icons/pattern2.png);
+	background-image: url(../../static/img/icons/pattern2.png);
   	background-repeat: repeat;
 }
 
 .bg3-pattern {
-	background-image: url(../images/icons/pattern3.png);
+	background-image: url(../../static/img/icons/pattern3.png);
   	background-repeat: repeat;
 }
 

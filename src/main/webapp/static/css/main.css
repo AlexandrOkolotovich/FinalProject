@@ -522,6 +522,7 @@ input[type="date" i] {
   align-items: center;
   justify-content: center;
   height: 100%;
+  margin-left: -40px;
 }
 
 .main_menu {
@@ -628,7 +629,7 @@ input[type="date" i] {
 }
 
 
-/*[ Social ]fdskj fklsd fklds
+/*[ Social ]
 -----------------------------------------------------------
 */
 .social a {

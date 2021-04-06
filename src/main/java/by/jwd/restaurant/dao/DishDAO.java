@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DishDAO {
     List<Dish> getAll() throws DAOException;
+    boolean setNewDish(Dish dish) throws DAOException;
 }

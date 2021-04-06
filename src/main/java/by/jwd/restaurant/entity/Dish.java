@@ -33,6 +33,15 @@ public class Dish implements Serializable {
         this.isAvailable = isAvailable;
     }
 
+    public Dish(String title, String description, double price, float calorieContent, boolean isAvailable, String picturePath) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.calorieContent = calorieContent;
+        this.isAvailable = isAvailable;
+        this.picturePath = picturePath;
+    }
+
     public Integer getId() {
         return id;
     }

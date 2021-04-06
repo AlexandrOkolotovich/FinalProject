@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Acer
-  Date: 29.03.2021
-  Time: 12:36
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,93 +6,6 @@
 </head>
 <body>
     <jsp:include page="part/header.jsp"/>
-
-    <!-- Sidebar -->
-    <aside class="sidebar trans-0-4">
-        <!-- Button Hide sidebar -->
-        <button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
-
-        <!-- - -->
-        <ul class="menu-sidebar p-t-95 p-b-70">
-            <li class="t-center m-b-13">
-                <a href="index.html" class="txt19">Home</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="menu.html" class="txt19">Menu</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="gallery.html" class="txt19">Gallery</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="about.html" class="txt19">About</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="blog.html" class="txt19">Blog</a>
-            </li>
-
-            <li class="t-center m-b-33">
-                <a href="contact.html" class="txt19">Contact</a>
-            </li>
-
-            <li class="t-center">
-                <!-- Button3 -->
-                <a href="reservation.html" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                    Reservation
-                </a>
-            </li>
-        </ul>
-
-        <!-- - -->
-        <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-            <!-- - -->
-            <h4 class="txt20 m-b-33">
-                Gallery
-            </h4>
-
-            <!-- Gallery -->
-            <div class="wrap-gallery-sidebar flex-w">
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-02.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-03.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-05.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-06.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-07.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="${pageContext.request.contextPath}/static/img/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-                    <img src="${pageContext.request.contextPath}/static/img/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                </a>
-            </div>
-        </div>
-    </aside>
 
     <!-- Slide1 -->
     <section class="section-slide">
@@ -111,7 +18,7 @@
 						</span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
-                            Pato Place
+                            Karpinka
                         </h2>
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
@@ -130,7 +37,7 @@
 						</span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
-                            Pato Place
+                            Karpinka
                         </h2>
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
@@ -149,7 +56,7 @@
 						</span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="rotateInUpRight">
-                            Pato Place
+                            KARPINKA
                         </h2>
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="rotateIn">
@@ -391,277 +298,6 @@
         </div>
     </section>
 
-
-    <!-- Event -->
-    <section class="section-event">
-        <div class="wrap-slick2">
-            <div class="slick2">
-                <div class="item-slick2 item1-slick2" style="background-image: url(${pageContext.request.contextPath}/static/img/bg-event-01.jpg);">
-                    <div class="wrap-content-slide2 p-t-115 p-b-208">
-                        <div class="container">
-                            <!-- - -->
-                            <div class="title-event t-center m-b-52">
-								<span class="tit2 p-l-15 p-r-15">
-									Upcomming
-								</span>
-
-                                <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-                                    Events
-                                </h3>
-                            </div>
-
-                            <!-- Block2 -->
-                            <div class="blo2 flex-w flex-str flex-col-c-m-lg animated visible-false" data-appear="zoomIn">
-                                <!-- Pic block2 -->
-                                <a href="#" class="wrap-pic-blo2 bg1-blo2" style="background-image: url(${pageContext.request.contextPath}/static/img/event-02.jpg);">
-                                    <div class="time-event size10 txt6 effect1">
-										<span class="txt-effect1 flex-c-m t-center">
-											08:00 PM Tuesday - 21 November 2018
-										</span>
-                                    </div>
-                                </a>
-
-                                <!-- Text block2 -->
-                                <div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
-                                    <h4 class="tit7 t-center m-b-10">
-                                        Wines during specific nights
-                                    </h4>
-
-                                    <p class="t-center">
-                                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia
-                                    </p>
-
-                                    <div class="flex-sa-m flex-w w-full m-t-40">
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 days">
-												25
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Days
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 hours">
-												12
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Hours
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 minutes">
-												59
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Minutes
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 seconds">
-												56
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Seconds
-											</span>
-                                        </div>
-                                    </div>
-
-                                    <a href="#" class="txt4 m-t-40">
-                                        View Details
-                                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 item2-slick2" style="background-image: url(${pageContext.request.contextPath}/static/img/bg-event-02.jpg);">
-                    <div class="wrap-content-slide2 p-t-115 p-b-208">
-                        <div class="container">
-                            <!-- - -->
-                            <div class="title-event t-center m-b-52">
-								<span class="tit2 p-l-15 p-r-15">
-									Upcomming
-								</span>
-
-                                <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-                                    Events
-                                </h3>
-                            </div>
-
-                            <!-- Block2 -->
-                            <div class="blo2 flex-w flex-str flex-col-c-m-lg animated visible-false" data-appear="fadeInDown">
-                                <!-- Pic block2 -->
-                                <a href="#" class="wrap-pic-blo2 bg2-blo2" style="background-image: url(${pageContext.request.contextPath}/static/img/event-06.jpg);">
-                                    <div class="time-event size10 txt6 effect1">
-										<span class="txt-effect1 flex-c-m">
-											08:00 PM Tuesday - 21 November 2021
-										</span>
-                                    </div>
-                                </a>
-
-                                <!-- Text block2 -->
-                                <div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
-                                    <h4 class="tit7 t-center m-b-10">
-                                        Wines during specific nights
-                                    </h4>
-
-                                    <p class="t-center">
-                                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia
-                                    </p>
-
-                                    <div class="flex-sa-m flex-w w-full m-t-40">
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 days">
-												25
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Days
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 hours">
-												12
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Hours
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 minutes">
-												59
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Minutes
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 seconds">
-												56
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Seconds
-											</span>
-                                        </div>
-                                    </div>
-
-                                    <a href="#" class="txt4 m-t-40">
-                                        View Details
-                                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 item3-slick2" style="background-image: url(${pageContext.request.contextPath}/static/img/bg-event-04.jpg);">
-                    <div class="wrap-content-slide2 p-t-115 p-b-208">
-                        <div class="container">
-                            <!-- - -->
-                            <div class="title-event t-center m-b-52">
-								<span class="tit2 p-l-15 p-r-15">
-									Upcomming
-								</span>
-
-                                <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-                                    Events
-                                </h3>
-                            </div>
-
-                            <!-- Block2 -->
-                            <div class="blo2 flex-w flex-str flex-col-c-m-lg animated visible-false" data-appear="rotateInUpLeft">
-                                <!-- Pic block2 -->
-                                <a href="#" class="wrap-pic-blo2 bg3-blo2" style="background-image: url(${pageContext.request.contextPath}/static/img/event-01.jpg);">
-                                    <div class="time-event size10 txt6 effect1">
-										<span class="txt-effect1 flex-c-m">
-											08:00 PM Tuesday - 21 November 2021
-										</span>
-                                    </div>
-                                </a>
-
-                                <!-- Text block2 -->
-                                <div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
-                                    <h4 class="tit7 t-center m-b-10">
-                                        Wines during specific nights
-                                    </h4>
-
-                                    <p class="t-center">
-                                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia
-                                    </p>
-
-                                    <div class="flex-sa-m flex-w w-full m-t-40">
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 days">
-												25
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Days
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 hours">
-												12
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Hours
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 minutes">
-												59
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Minutes
-											</span>
-                                        </div>
-
-                                        <div class="size11 flex-col-c-m">
-											<span class="dis-block t-center txt7 m-b-2 seconds">
-												56
-											</span>
-
-                                            <span class="dis-block t-center txt8">
-												Seconds
-											</span>
-                                        </div>
-                                    </div>
-
-                                    <a href="#" class="txt4 m-t-40">
-                                        View Details
-                                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="wrap-slick2-dots"></div>
-        </div>
-    </section>
-
+    <jsp:include page="part/footer.jsp"/>
 </body>
 </html>

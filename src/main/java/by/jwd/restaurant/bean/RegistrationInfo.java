@@ -8,6 +8,7 @@ public class RegistrationInfo {
     private String phone;
     private String email;
     private String password;
+    private Integer roleId;
 
     public RegistrationInfo() {
     }
@@ -58,6 +59,14 @@ public class RegistrationInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     @Override

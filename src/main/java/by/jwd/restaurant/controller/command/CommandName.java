@@ -9,6 +9,8 @@ public enum CommandName {
     SAVENEWUSER,
     REGISTRATION,
     EN,
-    RU
+    RU,
+    ADDNEWDISH,
+    GOTOADDDISHPAGE
 
 }

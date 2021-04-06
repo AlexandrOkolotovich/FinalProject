@@ -39,7 +39,7 @@ public class Registration implements Command {
             session.setAttribute("auth", true);
             response.sendRedirect("Controller?command=gotomainpage");
         } catch (ServiceException e) {
-            response.sendRedirect("Controller?command=gotologinpage&message=wrong in registration");//Controller?command=gotoindexpage&message=wrong in registration
+            response.sendRedirect("Controller?command=gotoregistrationpage&message=wrong in registration");
 
         }
 

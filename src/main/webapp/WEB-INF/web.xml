@@ -9,9 +9,6 @@
   </welcome-file-list>
   <display-name>Archetype Created Web Application</display-name>
 
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
 
   <servlet>
     <servlet-name>MyController</servlet-name>
@@ -21,6 +18,15 @@
   <servlet-mapping>
     <servlet-name>MyController</servlet-name>
     <url-pattern>/Controller</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Registration</servlet-name>
+    <jsp-file>/WEB-INF/jsp/registration.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Registration</servlet-name>
+    <url-pattern>/Registration</url-pattern>
   </servlet-mapping>
 
   <filter>
@@ -39,11 +45,9 @@
     </init-param>
   </filter>
 
-
-
   <filter-mapping>
     <filter-name>CharsetFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/Controller</url-pattern>
   </filter-mapping>
 
   <filter-mapping>
@@ -51,8 +55,6 @@
     <url-pattern>/Controller</url-pattern>
   </filter-mapping>
 
-
-  
   <listener>
     <listener-class>by.jwd.restaurant.controller.listener.ProjectRequestListener</listener-class>
   </listener>
@@ -60,14 +62,6 @@
   <listener>
     <listener-class>by.jwd.restaurant.controller.listener.ContextListener</listener-class>
   </listener>
-
-  <jsp-config>
-    <taglib>
-      <taglib-uri>/tld/localization.tld</taglib-uri>
-      <taglib-location>/tld/localization.tld</taglib-location>
-    </taglib>
-
-  </jsp-config>
 
 </web-app>
 

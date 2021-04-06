@@ -29,7 +29,6 @@ public class ChangeLocale implements Command {
         } else {
             page = INDEX_PAGE;
         }
-
         response.sendRedirect(page);
     }
 }

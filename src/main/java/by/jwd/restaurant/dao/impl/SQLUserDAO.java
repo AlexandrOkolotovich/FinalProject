@@ -4,16 +4,19 @@ import by.jwd.restaurant.bean.RegistrationInfo;
 import by.jwd.restaurant.dao.UserDAO;
 import by.jwd.restaurant.dao.connection.ConnectionPool;
 import by.jwd.restaurant.dao.exception.ConnectionPoolException;
+import by.jwd.restaurant.entity.Role;
 import by.jwd.restaurant.entity.User;
 import by.jwd.restaurant.dao.exception.DAOException;
 
 import java.sql.*;
+import java.util.Locale;
 
 public class SQLUserDAO implements UserDAO {
     private static final String COLUMN_LABEL_USER_ID = "user_id";
     private static final String COLUMN_LABEL_USER_PASSWORD = "user_password";
+    private static final String COLUMN_LABEL_USER_ROLE = "role_name";
 
-    private static final String SELECT_USER_EMAIL_PASSWORD = "SELECT * FROM users WHERE user_email = ? AND user_password = ?";
+    private static final String SELECT_USER_EMAIL_PASSWORD = "SELECT users.user_id, role_name FROM users JOIN roles ON users.role_id=roles.role_id WHERE user_email = ? AND user_password = ?";
     private static final String SELECT_USER_ID = "SELECT user_id FROM users WHERE user_email = ? ";
     private static final String INSERT_REGISTRATION_USER = "INSERT INTO users (user_name, user_surname, user_phone, user_email, user_password, role_id) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -29,7 +32,7 @@ public class SQLUserDAO implements UserDAO {
         ResultSet resSet;
 
         Integer id;
-        String user_password;
+        String role_name;
         User user = null;
 
         try {
@@ -41,13 +44,12 @@ public class SQLUserDAO implements UserDAO {
 
             if(resSet.next()){
                 id = resSet.getInt(COLUMN_LABEL_USER_ID);
-                user_password = resSet.getString(COLUMN_LABEL_USER_PASSWORD);
 
-                if(!password.equals(user_password)){
-                    throw new DAOException();
-                }
+                role_name = resSet.getString(COLUMN_LABEL_USER_ROLE);
+                Role role = Role.valueOf(role_name);
 
-                user = new User(id, login, password);
+                user = new User(id, login, password, role);
+
             }
         } catch (SQLException | ConnectionPoolException e) {
             throw new DAOException(e);
@@ -67,8 +69,6 @@ public class SQLUserDAO implements UserDAO {
         Connection connection = null;
         PreparedStatement prSt = null;
 
-        final int role = 2; // user id = 2
-
         try {
             connection = connectionPool.takeConnection();
             prSt = connection.prepareStatement(INSERT_REGISTRATION_USER);
@@ -77,7 +77,7 @@ public class SQLUserDAO implements UserDAO {
             prSt.setString(3, user.getPhone());
             prSt.setString(4, user.getEmail());
             prSt.setString(5, user.getPassword());
-            prSt.setInt(6, role);
+            prSt.setInt(6, user.getRoleId());
             prSt.executeUpdate();
 
         } catch (SQLException | ConnectionPoolException e) {

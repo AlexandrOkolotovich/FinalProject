@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,28 +9,28 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/static/img/icons/favicon.png"/>
     <!--===============================================================================================-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/vendor/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/fonts/themify/themify-icons.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/fonts/themify/themify-icons.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/animate/animate.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/animate/animate.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/css-hamburgers/hamburgers.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/animsition/css/animsition.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/animsition/css/animsition.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/select2/select2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/select2/select2.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/daterangepicker/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/daterangepicker/daterangepicker.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/slick/slick.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/lightbox2/css/lightbox.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/vendor/lightbox2/css/lightbox.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/util.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/util.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
     <!--===============================================================================================-->
 
     <title>Title</title>
@@ -44,6 +45,7 @@
     <fmt:message bundle="${loc}" key="header.lable.about" var="about"/>
     <fmt:message bundle="${loc}" key="header.lable.blog" var="blog"/>
     <fmt:message bundle="${loc}" key="header.lable.contact" var="contact"/>
+    <fmt:message bundle="${loc}" key="header.lable.logout" var="logout"/>
 </head>
 <body>
 
@@ -100,7 +102,9 @@
                     <ul class="main_menu">
                         <li>
                             <div class="dropdown choose-country">
-                                <a type="submit"  data-toggle="dropdown" href=""><img src="${pageContext.request.contextPath}/static/img/flags/gb.png" alt="English language"/> EN</a>
+                                <a type="submit"  data-toggle="dropdown" href="">
+                                    <img src="${pageContext.request.contextPath}/static/img/flags/globus2.png" alt="language"/>
+                                </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="menuitem"><form action="Controller" class="locale" method="post">
                                         <input type="hidden" name="command" value="en" /><button type="submit" class="button-nav" id="locale_en" value="en"><img src="${pageContext.request.contextPath}/static/img/flags/gb.png" alt="English language"/> EN</button>
@@ -111,42 +115,23 @@
                                 </ul>
                             </div>
                         </li>
+                        <c:set var="user" value="${sessionScope.userId}"/>
+                        <c:if test="${user == null}">
                         <li>
                             <a href="Controller?command=gotologinpage">${signin}</a>
                         </li>
+                        </c:if>
+                        <c:if test="${user != null}">
+                            <li>
+                                <a href="Controller?command=logout">${logout}</a>
+                            </li>
+                        </c:if>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/bootstrap/js/popper.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/daterangepicker/moment.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/slick/slick.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/slick-custom.js"></script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/parallax100/parallax100.js"></script>
-<script type="text/javascript">
-    $('.parallax100').parallax100();
-</script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/vendor/lightbox2/js/lightbox.min.js"></script>
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath}/static/js/main.js"></script>
 
 </body>
 </html>

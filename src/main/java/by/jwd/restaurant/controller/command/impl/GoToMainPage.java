@@ -1,6 +1,7 @@
 package by.jwd.restaurant.controller.command.impl;
 
 import by.jwd.restaurant.controller.command.Command;
+import by.jwd.restaurant.entity.Role;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,11 +22,12 @@ public class GoToMainPage implements Command {
             return;
         }
 
-        Boolean isAuth = (Boolean) session.getAttribute("auth");
+        Integer id = null;
 
-        if (isAuth == null || !isAuth) {
-            response.sendRedirect("Controller?command=gotologinpage&message=eeerrror");
-            return;
+        if(session.getAttribute("userRole") == Role.ADMIN){
+            id = (Integer) session.getAttribute("userId");
+        } else if(session.getAttribute("userRole") == Role.USER){
+            id = (Integer) session.getAttribute("userId");
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");

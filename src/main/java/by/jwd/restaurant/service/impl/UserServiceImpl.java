@@ -3,6 +3,7 @@ package by.jwd.restaurant.service.impl;
 import by.jwd.restaurant.bean.RegistrationInfo;
 import by.jwd.restaurant.dao.DAOProvider;
 import by.jwd.restaurant.dao.UserDAO;
+import by.jwd.restaurant.dao.impl.SQLUserDAO;
 import by.jwd.restaurant.entity.User;
 import by.jwd.restaurant.dao.exception.DAOException;
 import by.jwd.restaurant.service.exception.ServiceException;
@@ -10,6 +11,8 @@ import by.jwd.restaurant.service.UserService;
 import by.jwd.restaurant.service.validation.UserValidator;
 
 public class UserServiceImpl implements UserService {
+    private static final int USER_ROLE_ID = 2;
+
     @Override
     public User authorization(String login, String password) throws ServiceException {
 
@@ -39,6 +42,8 @@ public class UserServiceImpl implements UserService {
 
         DAOProvider provider = DAOProvider.getInstance();
         UserDAO userDAO = provider.getUserDAO();
+
+        user.setRoleId(USER_ROLE_ID);
 
         try {
             userDAO.registration(user);

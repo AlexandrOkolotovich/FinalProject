@@ -11,12 +11,12 @@ import java.io.IOException;
 public class LogOut implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
-        if(session!=null){
-            session.removeAttribute("auth");
+        if (session != null) {
+            session.invalidate();
         }
 
-        response.sendRedirect("Controller?command=gotologinpage&message=logout ok");
+        response.sendRedirect("Controller?command=gotohomepage&message=logout ok");
     }
 }

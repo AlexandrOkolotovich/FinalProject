@@ -39,7 +39,7 @@ public class Controller extends HttpServlet {
         try {
             command.execute(request, response);
         } catch (ServiceException e) {
-            response.sendRedirect("Controller?command=gotohomepage");//Controller?command=gotoindexpage&message=wrong in registration
+            response.sendRedirect("Controller?command=gotohomepage&message=wrong in registration");
         }
     }
 }
