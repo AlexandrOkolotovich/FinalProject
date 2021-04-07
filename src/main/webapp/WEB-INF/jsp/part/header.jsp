@@ -31,6 +31,8 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/util.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/catalog.css">
+
     <!--===============================================================================================-->
 
     <title>Title</title>
@@ -71,7 +73,7 @@
                             </li>
 
                             <li>
-                                <a href="menu.html">${menu}</a>
+                                <a href="Controller?command=gotomenupage">${menu}</a>
                             </li>
 
                             <li>

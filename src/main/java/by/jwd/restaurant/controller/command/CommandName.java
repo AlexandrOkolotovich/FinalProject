@@ -11,6 +11,7 @@ public enum CommandName {
     EN,
     RU,
     ADDNEWDISH,
-    GOTOADDDISHPAGE
+    GOTOADDDISHPAGE,
+    GOTOMENUPAGE
 
 }

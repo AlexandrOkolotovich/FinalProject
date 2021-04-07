@@ -5,18 +5,20 @@ import java.util.Date;
 
 public class Order implements Serializable {
     private Integer id;
-    private String status;
+    private OrderStatus status;
     private Date time;
     private Integer orderPaymentMethodId;
     private double totalPrice;
     private String review;
     private Integer userId;
     private Integer tableReservationId;
+    private Dish dish;
+    private Drink drink;
 
     public Order() {
     }
 
-    public Order(Integer id, String status, Date time, Integer orderPaymentMethodId, double totalPrice, String review, Integer userId, Integer tableReservationId) {
+    public Order(Integer id, OrderStatus status, Date time, Integer orderPaymentMethodId, double totalPrice, String review, Integer userId, Integer tableReservationId) {
         this.id = id;
         this.status = status;
         this.time = time;
@@ -27,7 +29,7 @@ public class Order implements Serializable {
         this.tableReservationId = tableReservationId;
     }
 
-    public Order(Integer id, String status, Date time, double totalPrice, String review) {
+    public Order(Integer id, OrderStatus status, Date time, double totalPrice, String review) {
         this.id = id;
         this.status = status;
         this.time = time;
@@ -43,11 +45,11 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
@@ -99,6 +101,22 @@ public class Order implements Serializable {
         this.tableReservationId = tableReservationId;
     }
 
+    public Dish getDish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
+    }
+
+    public Drink getDrink() {
+        return drink;
+    }
+
+    public void setDrink(Drink drink) {
+        this.drink = drink;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,12 +126,14 @@ public class Order implements Serializable {
 
         if (Double.compare(order.totalPrice, totalPrice) != 0) return false;
         if (!id.equals(order.id)) return false;
-        if (!status.equals(order.status)) return false;
+        if (status != order.status) return false;
         if (!time.equals(order.time)) return false;
         if (!orderPaymentMethodId.equals(order.orderPaymentMethodId)) return false;
         if (!review.equals(order.review)) return false;
         if (!userId.equals(order.userId)) return false;
-        return tableReservationId.equals(order.tableReservationId);
+        if (!tableReservationId.equals(order.tableReservationId)) return false;
+        if (!dish.equals(order.dish)) return false;
+        return drink.equals(order.drink);
     }
 
     @Override
@@ -129,6 +149,8 @@ public class Order implements Serializable {
         result = 31 * result + review.hashCode();
         result = 31 * result + userId.hashCode();
         result = 31 * result + tableReservationId.hashCode();
+        result = 31 * result + dish.hashCode();
+        result = 31 * result + drink.hashCode();
         return result;
     }
 
@@ -136,13 +158,15 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", status='" + status + '\'' +
+                ", status=" + status +
                 ", time=" + time +
                 ", orderPaymentMethodId=" + orderPaymentMethodId +
                 ", totalPrice=" + totalPrice +
                 ", review='" + review + '\'' +
                 ", userId=" + userId +
                 ", tableReservationId=" + tableReservationId +
+                ", dish=" + dish +
+                ", drink=" + drink +
                 '}';
     }
 }

@@ -1,6 +1,8 @@
 package by.jwd.restaurant.dao;
 
 import by.jwd.restaurant.dao.impl.SQLDishDAO;
+import by.jwd.restaurant.dao.impl.SQLDrinkDAO;
+import by.jwd.restaurant.dao.impl.SQLOrderDAO;
 import by.jwd.restaurant.dao.impl.SQLUserDAO;
 
 public final class DAOProvider {
@@ -10,6 +12,10 @@ public final class DAOProvider {
     private final UserDAO userDAO = new SQLUserDAO();
 
     private final DishDAO dishDAO = new SQLDishDAO();
+
+    private final DrinkDAO drinkDAO = new SQLDrinkDAO();
+
+    private final OrderDAO orderDAO = new SQLOrderDAO();
 
     private DAOProvider() {}
 
@@ -25,4 +31,11 @@ public final class DAOProvider {
         return dishDAO;
     }
 
+    public DrinkDAO getDrinkDAO() {
+        return drinkDAO;
+    }
+
+    public OrderDAO getOrderDAO() {
+        return orderDAO;
+    }
 }

@@ -33,7 +33,7 @@
     <div class="container" id="catalog">
         <c:if test="${sessionScope.userRole == 'ADMIN'}">
         <form action="Controller" method="post" >
-            <a href="" class="txt4">Просмотр блюд</a><br/>
+            <a href="Controller?command=gotomenupage" class="txt4">Просмотр блюд</a><br/>
             <a href="Controller?command=gotoadddishpage" class="txt4">Добавить блюдо</a><br /><br />
             <a href="" class="txt4">Просмотр меню</a><br/>
             <a href="" class="txt4">Составить меню</a><br/>

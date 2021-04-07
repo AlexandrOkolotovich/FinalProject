@@ -34,7 +34,7 @@
         ${description}:<br />
         <textarea name="description" cols="40" rows="3" class="bo-rad-10 txt36 p-l-20 size17" ></textarea><br/>
         ${price}:<br />
-        <input type="text" name="price" class="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
+        <input type="text" name="price" class="bo-rad-10 txt36 p-l-20 size17" value="" /> BYN<br />
         ${calorieContent}:<br />
         <input type="text" name="calorieContent" class="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
         ${isAvailable}:<br />

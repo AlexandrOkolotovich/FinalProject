@@ -13,6 +13,7 @@ public class CommandProvider {
         commands.put(CommandName.GOTOLOGINPAGE, new GoToLogInPage());
         commands.put(CommandName.GOTOHOMEPAGE, new GoToHomePage());
         commands.put(CommandName.GOTOADDDISHPAGE, new GoToAddDishPage());
+        commands.put(CommandName.GOTOMENUPAGE, new GoToMenuPage());
         commands.put(CommandName.REGISTRATION, new GoToRegistrationPage());
         commands.put(CommandName.LOGIN, new LogIn());
         commands.put(CommandName.LOGOUT, new LogOut());
