@@ -17,6 +17,7 @@ public class SQLOrderDAO implements OrderDAO {
     private static final String CREATE_ORDER = "INSERT INTO orders (order_status, order_time, order_total_price, order_review, user_id) VALUES (?, ?, ?, ?, ?)";
     private static final String CREATE_ORDER_DISH = "INSERT INTO odereddishes (dish_id, order_id) VALUES (?, ?)";
     private static final String CREATE_ORDER_DRINK = "INSERT INTO ordereddrinks (drink_id, order_id) VALUES (?, ?)";
+    private static final String DELETE_ORDERED_DISH = "DELETE FROM odereddishes WHERE odered_dishes_id = ?";
 
     @Override
     public List<Order> getAll() throws DAOException {
@@ -53,7 +54,7 @@ public class SQLOrderDAO implements OrderDAO {
     }
 
     @Override
-    public Order createOrderDish(Order order) throws DAOException {
+    public void createOrderDish(Integer dishId, Integer orderId) throws DAOException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         Connection connection = null;
         PreparedStatement prSt = null;
@@ -61,8 +62,8 @@ public class SQLOrderDAO implements OrderDAO {
         try {
             connection = connectionPool.takeConnection();
             prSt = connection.prepareStatement(CREATE_ORDER_DISH);
-            prSt.setInt(1, order.getDish().getId());
-            prSt.setInt(2, order.getId());
+            prSt.setInt(1, dishId);
+            prSt.setInt(2, orderId);
 
             prSt.executeUpdate();
 
@@ -75,7 +76,6 @@ public class SQLOrderDAO implements OrderDAO {
                 throw new DAOException(e);
             }
         }
-        return order;
     }
 
     @Override
@@ -102,5 +102,29 @@ public class SQLOrderDAO implements OrderDAO {
             }
         }
         return order;
+    }
+
+    @Override
+    public void deleteOrderedDish(Integer orderedDishId) throws DAOException {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        Connection connection = null;
+        PreparedStatement prSt = null;
+
+        try{
+            connection = connectionPool.takeConnection();
+
+            prSt = connection.prepareStatement(DELETE_ORDERED_DISH);
+            prSt.setInt(1, orderedDishId);
+
+            prSt.executeUpdate();
+        } catch(SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, prSt);
+            }catch (ConnectionPoolException e){
+                throw new DAOException(e);
+            }
+        }
     }
 }

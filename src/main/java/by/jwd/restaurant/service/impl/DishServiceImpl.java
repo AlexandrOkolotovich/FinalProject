@@ -40,4 +40,44 @@ public class DishServiceImpl implements DishService {
         return true;
     }
 
+    @Override
+    public void makeNotAvailable(Integer id) throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        DishDAO dishDAO = provider.getDishDAO();
+
+        try {
+            dishDAO.updateDishNotAvailable(id);
+        } catch (DAOException e) {
+            throw new ServiceException("update dish not available exception", e);
+        }
+    }
+
+    @Override
+    public Dish getDish(Integer id) throws ServiceException {
+        Dish dish;
+
+        DAOProvider provider = DAOProvider.getInstance();
+        DishDAO dishDAO = provider.getDishDAO();
+
+        try {
+            dish = dishDAO.getDish(id);
+        } catch (DAOException e) {
+            throw new ServiceException("get dish exception", e);
+        }
+
+        return dish;
+    }
+
+    @Override
+    public void updateDish(Dish dish) throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        DishDAO dishDAO = provider.getDishDAO();
+
+        try {
+            dishDAO.updateDish(dish);
+        } catch (DAOException e) {
+            throw new ServiceException("update dish not available exception", e);
+        }
+    }
+
 }

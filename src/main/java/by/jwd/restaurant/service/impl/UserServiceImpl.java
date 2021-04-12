@@ -1,9 +1,8 @@
 package by.jwd.restaurant.service.impl;
 
-import by.jwd.restaurant.bean.RegistrationInfo;
+import by.jwd.restaurant.entity.RegistrationInfo;
 import by.jwd.restaurant.dao.DAOProvider;
 import by.jwd.restaurant.dao.UserDAO;
-import by.jwd.restaurant.dao.impl.SQLUserDAO;
 import by.jwd.restaurant.entity.User;
 import by.jwd.restaurant.dao.exception.DAOException;
 import by.jwd.restaurant.service.exception.ServiceException;

@@ -35,9 +35,9 @@
     <form action="Controller" method="post" >
        <input type="hidden" name="command" value="logIn" />
         ${email}:
-        <br /> <input type="email" class="bo-rad-10 txt36 p-l-20 size17" name="email" value="" /><br />
+        <br /> <input type="email" class="bo-rad-10 txt36 p-l-20 size17" name="email" pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,6}$" value="" /><br />
        ${password}:
-        <br /> <input type="password" class="bo-rad-10 txt36 p-l-20 size17" name="password" value="" /><br />
+        <br /> <input type="password" class="bo-rad-10 txt36 p-l-20 size17" name="password" pattern="^[a-zA-Z0-9]{6,15}$" value="" /><br />
         <br />
         <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">${login} </button><br />
         <br />

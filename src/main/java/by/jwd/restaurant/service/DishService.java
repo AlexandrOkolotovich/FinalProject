@@ -8,4 +8,7 @@ import java.util.List;
 public interface DishService {
     List<Dish> getDishes() throws ServiceException;
     boolean addNewDish(Dish dish) throws ServiceException;
+    void makeNotAvailable(Integer id) throws ServiceException;
+    Dish getDish(Integer id) throws ServiceException;
+    void updateDish(Dish dish) throws ServiceException;
 }

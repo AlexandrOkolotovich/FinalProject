@@ -1,6 +1,7 @@
 package by.jwd.restaurant.service;
 
 import by.jwd.restaurant.service.impl.DishServiceImpl;
+import by.jwd.restaurant.service.impl.OrderServiceImpl;
 import by.jwd.restaurant.service.impl.UserServiceImpl;
 
 public final class ServiceProvider {
@@ -11,6 +12,8 @@ public final class ServiceProvider {
     private final UserService userService = new UserServiceImpl();
 
     private final DishService dishService = new DishServiceImpl();
+
+    private final OrderService orderService = new OrderServiceImpl();
 
     public static ServiceProvider getInstance() {
         return instance;
@@ -24,4 +27,7 @@ public final class ServiceProvider {
         return dishService;
     }
 
+    public OrderService getOrderService() {
+        return orderService;
+    }
 }

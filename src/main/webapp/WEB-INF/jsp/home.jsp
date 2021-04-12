@@ -23,7 +23,7 @@
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
                             <!-- Button1 -->
-                            <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                            <a href="Controller?command=gotomenupage" class="btn1 flex-c-m size1 txt3 trans-0-4">
                                 Look Menu
                             </a>
                         </div>
@@ -42,7 +42,7 @@
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
                             <!-- Button1 -->
-                            <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                            <a href="Controller?command=gotomenupage" class="btn1 flex-c-m size1 txt3 trans-0-4">
                                 Look Menu
                             </a>
                         </div>
@@ -61,7 +61,7 @@
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="rotateIn">
                             <!-- Button1 -->
-                            <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                            <a href="Controller?command=gotomenupage" class="btn1 flex-c-m size1 txt3 trans-0-4">
                                 Look Menu
                             </a>
                         </div>
@@ -116,7 +116,7 @@
 			</span>
 
             <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-                Pato Place
+                Karpinka
             </h3>
         </div>
 

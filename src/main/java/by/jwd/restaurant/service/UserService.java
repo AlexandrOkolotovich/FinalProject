@@ -1,6 +1,6 @@
 package by.jwd.restaurant.service;
 
-import by.jwd.restaurant.bean.RegistrationInfo;
+import by.jwd.restaurant.entity.RegistrationInfo;
 import by.jwd.restaurant.entity.User;
 import by.jwd.restaurant.service.exception.ServiceException;
 

@@ -30,21 +30,23 @@
 <br /><br />
 
 <center>
-<form action="Controller" method="post">
-    <input type="hidden" name="command" value="savenewuser" />
-    ${name}:<br />
-    <input type="text" name="name" class="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
-    ${surname}:<br />
-    <input type="text" name="surname" class="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
-    ${phone}:<br />
-    <input type="text" name="phone" class="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
-    ${email}:<br />
-    <input type="text" name="email" class="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
-    ${password}:<br />
-    <input type="password" name="password" cclass="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
-    <br />
-    <button type="submit" class="btn3 flex-c-m size17 txt11 trans-0-4" >${signupButton}</button> <br /><br />
-</form>
+    <form action="Controller" method="post" >
+        <input type="hidden" name="command" value="savenewuser" />
+        <form name="registration">
+            ${name}:<br />
+            <input type="text" name="name" class="bo-rad-10 txt36 p-l-20 size17" pattern="^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$" value="" /><br />
+            ${surname}:<br />
+            <input type="text" name="surname" class="bo-rad-10 txt36 p-l-20 size17" pattern="^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$" value="" /><br />
+            ${phone}:<br />
+            <input type="text" name="phone" class="bo-rad-10 txt36 p-l-20 size17" pattern="^((\+375))((29|44|33|25))[\d]{7}$" value="" /><br />
+            ${email}:<br />
+            <input type="text" name="email" class="bo-rad-10 txt36 p-l-20 size17" pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,6}$" value="" /><br />
+            ${password}:<br />
+            <input type="password" name="password" class="bo-rad-10 txt36 p-l-20 size17" pattern="^[a-zA-Z0-9]{6,15}$" value="" /><br />
+            <br />
+            <button type="submit" class="btn3 flex-c-m size17 txt11 trans-0-4" >${signupButton}</button> <br /><br />
+        </form>
+    </form>
 </center>
 
 <jsp:include page="part/footer.jsp"/>

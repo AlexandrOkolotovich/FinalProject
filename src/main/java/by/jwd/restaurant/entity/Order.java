@@ -1,6 +1,8 @@
 package by.jwd.restaurant.entity;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Order implements Serializable {
@@ -35,6 +37,14 @@ public class Order implements Serializable {
         this.time = time;
         this.totalPrice = totalPrice;
         this.review = review;
+    }
+
+    public Order(OrderStatus status, Date time, double totalPrice, String review, Integer userId) {
+        this.status = status;
+        this.time = time;
+        this.totalPrice = totalPrice;
+        this.review = review;
+        this.userId = userId;
     }
 
     public Integer getId() {

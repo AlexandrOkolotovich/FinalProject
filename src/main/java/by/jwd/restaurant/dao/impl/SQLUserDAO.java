@@ -1,6 +1,6 @@
 package by.jwd.restaurant.dao.impl;
 
-import by.jwd.restaurant.bean.RegistrationInfo;
+import by.jwd.restaurant.entity.RegistrationInfo;
 import by.jwd.restaurant.dao.UserDAO;
 import by.jwd.restaurant.dao.connection.ConnectionPool;
 import by.jwd.restaurant.dao.exception.ConnectionPoolException;
@@ -9,7 +9,6 @@ import by.jwd.restaurant.entity.User;
 import by.jwd.restaurant.dao.exception.DAOException;
 
 import java.sql.*;
-import java.util.Locale;
 
 public class SQLUserDAO implements UserDAO {
     private static final String COLUMN_LABEL_USER_ID = "user_id";

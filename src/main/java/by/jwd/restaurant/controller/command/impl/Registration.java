@@ -1,6 +1,6 @@
 package by.jwd.restaurant.controller.command.impl;
 
-import by.jwd.restaurant.bean.RegistrationInfo;
+import by.jwd.restaurant.entity.RegistrationInfo;
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.service.exception.ServiceException;
 import by.jwd.restaurant.service.ServiceProvider;

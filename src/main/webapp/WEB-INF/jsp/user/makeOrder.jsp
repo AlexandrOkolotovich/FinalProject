@@ -28,7 +28,7 @@
 
 <center>
     <form action="Controller" method="post">
-        <input type="hidden" name="command" value="addnewdish" />
+        <input type="hidden" name="command" value="makeOrder" />
         ${title}:<br />
         <input type="text" name="title" class="bo-rad-10 txt36 p-l-20 size17" value="" /><br />
         ${description}:<br />

@@ -109,10 +109,10 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="menuitem"><form action="Controller" class="locale" method="post">
-                                        <input type="hidden" name="command" value="en" /><button type="submit" class="button-nav" id="locale_en" value="en"><img src="${pageContext.request.contextPath}/static/img/flags/gb.png" alt="English language"/> EN</button>
+                                        <input type="hidden" name="command" value="en" /><button type="submit" class="button-nav" id="locale_en" value="en"><img src="${pageContext.request.contextPath}/static/img/flags/gb.png" alt="English language"/>EN</button>
                                     </form></li>
                                     <li role="menuitem"><form action="Controller" method="post">
-                                        <input type="hidden" name="command" value="ru" /><button type="submit" class="button-nav" id="locale_ru" value="ru"><img src="${pageContext.request.contextPath}/static/img/flags/ru.png" alt="Russian language"/> RU</button>
+                                        <input type="hidden" name="command" value="ru" /><button type="submit" class="button-nav" id="locale_ru" value="ru"><img src="${pageContext.request.contextPath}/static/img/flags/ru.png" alt="Russian language"/>RU</button>
                                     </form></li>
                                 </ul>
                             </div>

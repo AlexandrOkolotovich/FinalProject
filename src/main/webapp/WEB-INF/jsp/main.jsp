@@ -38,6 +38,7 @@
             <a href="" class="txt4">Просмотр меню</a><br/>
             <a href="" class="txt4">Составить меню</a><br/>
         </form>
+            <br/>
         </c:if>
     </div>
 </section>

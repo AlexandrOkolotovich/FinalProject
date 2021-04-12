@@ -17,8 +17,6 @@ public class OrderServiceImpl implements OrderService {
 
         try {
             orderDAO.createOrder(order);
-            orderDAO.createOrderDish(order);
-            orderDAO.createOrderDrink(order);
         } catch (DAOException e) {
             throw new ServiceException("make order exception", e);
         }
@@ -39,5 +37,31 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return allOrders;
+    }
+
+    @Override
+    public boolean addDishToOrder(Integer dishId, Integer orderId) throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        OrderDAO orderDAO = provider.getOrderDAO();
+
+        try {
+            orderDAO.createOrderDish(dishId, orderId);
+        } catch (DAOException e) {
+            throw new ServiceException("make order exception", e);
+        }
+
+        return true;
+    }
+
+    @Override
+    public void deleteDishInOrder(Integer orderedDishId) throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        OrderDAO orderDAO = provider.getOrderDAO();
+
+        try{
+            orderDAO.deleteOrderedDish(orderedDishId);
+        } catch (DAOException e){
+            throw new ServiceException("delete ordered dish exception", e);
+        }
     }
 }

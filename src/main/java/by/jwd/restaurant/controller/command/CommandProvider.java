@@ -1,9 +1,9 @@
 package by.jwd.restaurant.controller.command;
 
 import by.jwd.restaurant.controller.command.impl.*;
+import by.jwd.restaurant.controller.command.impl.go.*;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class CommandProvider {
@@ -14,6 +14,7 @@ public class CommandProvider {
         commands.put(CommandName.GOTOHOMEPAGE, new GoToHomePage());
         commands.put(CommandName.GOTOADDDISHPAGE, new GoToAddDishPage());
         commands.put(CommandName.GOTOMENUPAGE, new GoToMenuPage());
+        commands.put(CommandName.GOTOEDITDISHPAGE, new GoToEditDishPage());
         commands.put(CommandName.REGISTRATION, new GoToRegistrationPage());
         commands.put(CommandName.LOGIN, new LogIn());
         commands.put(CommandName.LOGOUT, new LogOut());
@@ -22,6 +23,10 @@ public class CommandProvider {
         commands.put(CommandName.EN, new ChangeLocale());
         commands.put(CommandName.RU, new ChangeLocale());
         commands.put(CommandName.ADDNEWDISH, new AddNewDish());
+        commands.put(CommandName.MAKEORDER, new MakeOrder());
+        commands.put(CommandName.ADDTOORDER, new AddToOrder());
+        commands.put(CommandName.DELETEDISH, new DeleteDish());
+        commands.put(CommandName.UPDATEDISH, new UpdateDish());
     }
 
     public Command takeCommand(String name){

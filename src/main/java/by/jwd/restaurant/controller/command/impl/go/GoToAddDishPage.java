@@ -1,4 +1,4 @@
-package by.jwd.restaurant.controller.command.impl;
+package by.jwd.restaurant.controller.command.impl.go;
 
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.service.exception.ServiceException;

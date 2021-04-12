@@ -1,35 +1,33 @@
 package by.jwd.restaurant.controller.command.impl;
 
+import by.jwd.restaurant.constant.RequestParameters;
 import by.jwd.restaurant.controller.command.Command;
-import by.jwd.restaurant.entity.Dish;
 import by.jwd.restaurant.service.DishService;
 import by.jwd.restaurant.service.ServiceProvider;
 import by.jwd.restaurant.service.exception.ServiceException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-public class GoToMenuPage implements Command {
-    private static final String ATTRIBUTE_DISHES = "dishes";
+public class DeleteDish implements Command {
+    private static final String DISH_ID = RequestParameters.DISH_ID;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
+        Integer dishId;
+
+        dishId = Integer.valueOf(request.getParameter(DISH_ID));
+
         ServiceProvider provider = ServiceProvider.getInstance();
         DishService dishService = provider.getDishService();
 
         try {
-            List<Dish> dishes = dishService.getDishes();
-            request.setAttribute(ATTRIBUTE_DISHES, dishes);
+            dishService.makeNotAvailable(dishId);
+            response.sendRedirect("Controller?command=gotomenupage&message=success delete dish");
         }catch (ServiceException e){
-            response.sendRedirect("Controller?command=gotohomepage&message=wrong in catch");
+            response.sendRedirect("Controller?command=gotomenupage&message=wrong in delete dish");
         }
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
-        requestDispatcher.forward(request, response);
-
     }
 }
