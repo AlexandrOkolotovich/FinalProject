@@ -18,13 +18,11 @@ import java.util.Date;
 public class MakeOrder implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        OrderStatus status;
         String dateStr;
         double totalPrice;
         String review;
         Integer userId;
 
-        status = OrderStatus.valueOf(request.getParameter("status"));
         dateStr = request.getParameter("date");
         totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
         review = request.getParameter("review");
@@ -38,7 +36,7 @@ public class MakeOrder implements Command {
             throw new ServiceException("date parser exception", e);
         }
 
-        Order order = new Order(status, date, totalPrice, review, userId);
+        Order order = new Order(date, totalPrice, review, userId);
 
         ServiceProvider provider = ServiceProvider.getInstance();
         OrderService orderService = provider.getOrderService();

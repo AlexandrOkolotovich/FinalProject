@@ -40,6 +40,12 @@
         </form>
             <br/>
         </c:if>
+        <c:if test="${sessionScope.userRole == 'USER'}">
+            <form action="Controller" method="post">
+                <a href="Controller?command=gotomenupage" class="txt4">Просмотр блюд</a><br/>
+                <a href="" class="txt4">Сделать заказ</a><br/>
+            </form>
+        </c:if>
     </div>
 </section>
 

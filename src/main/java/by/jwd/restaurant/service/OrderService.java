@@ -10,4 +10,7 @@ public interface OrderService {
     List<Order> getAllOrders() throws ServiceException;
     boolean addDishToOrder(Integer dishId, Integer orderId) throws ServiceException;
     void deleteDishInOrder(Integer orderedDishId) throws ServiceException;
+    void makeNewOrder(Integer userId) throws ServiceException;
+    Integer getOrderId(Integer userId) throws ServiceException;
+    void checkOrderStatus() throws ServiceException;
 }

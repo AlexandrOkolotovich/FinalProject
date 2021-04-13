@@ -81,19 +81,11 @@
                             </li>
 
                             <li>
-                                <a href="gallery.html">${gallery}</a>
+                                <a href="Controller?command=gotogallerypage">${gallery}</a>
                             </li>
 
                             <li>
                                 <a href="about.html">${about}</a>
-                            </li>
-
-                            <li>
-                                <a href="blog.html">${blog}</a>
-                            </li>
-
-                            <li>
-                                <a href="contact.html">${contact}</a>
                             </li>
 
                         </ul>
@@ -124,6 +116,9 @@
                         </li>
                         </c:if>
                         <c:if test="${user != null}">
+                            <li>
+                                <a href="Controller?command=gotomainpage"><c:out value="${sessionScope.userRole}"/></a>
+                            </li>
                             <li>
                                 <a href="Controller?command=logout">${logout}</a>
                             </li>

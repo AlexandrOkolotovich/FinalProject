@@ -47,6 +47,13 @@ public class Order implements Serializable {
         this.userId = userId;
     }
 
+    public Order(Date date, double totalPrice, String review, Integer userId) {
+        this.time = date;
+        this.totalPrice = totalPrice;
+        this.review = review;
+        this.userId = userId;
+    }
+
     public Integer getId() {
         return id;
     }

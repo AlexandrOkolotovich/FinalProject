@@ -11,6 +11,7 @@ import by.jwd.restaurant.service.impl.DishServiceImpl;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AddToOrder implements Command {
@@ -18,15 +19,27 @@ public class AddToOrder implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
         Integer dishId;
         Integer orderId;
+        Integer userId;
+
+        HttpSession session = request.getSession();
 
         dishId = Integer.valueOf(request.getParameter("dishId"));
-        orderId = Integer.valueOf(request.getParameter("orderId"));
+        userId = (Integer) session.getAttribute("userId");
 
         ServiceProvider serviceProvider = ServiceProvider.getInstance();
         OrderService orderService = serviceProvider.getOrderService();
 
         try {
+            orderId = orderService.getOrderId(userId);
+
+            if(orderId == null){
+                orderService.makeNewOrder(userId);
+                orderId = orderService.getOrderId(userId);
+            }
+
             orderService.addDishToOrder(dishId, orderId);
+
+            response.sendRedirect("Controller?command=gotomenupage");
         } catch (ServiceException e){
             response.sendRedirect("Controller?command=gotomenupage&message=wrong in adding dish to order");
         }

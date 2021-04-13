@@ -27,6 +27,7 @@ public class CommandProvider {
         commands.put(CommandName.ADDTOORDER, new AddToOrder());
         commands.put(CommandName.DELETEDISH, new DeleteDish());
         commands.put(CommandName.UPDATEDISH, new UpdateDish());
+        commands.put(CommandName.GOTOGALLERYPAGE, new GoToGalleryPage());
     }
 
     public Command takeCommand(String name){

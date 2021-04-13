@@ -23,6 +23,8 @@ public class OrderServiceImpl implements OrderService {
         return true;
     }
 
+
+
     @Override
     public List<Order> getAllOrders() throws ServiceException {
         List<Order> allOrders = null;
@@ -64,4 +66,45 @@ public class OrderServiceImpl implements OrderService {
             throw new ServiceException("delete ordered dish exception", e);
         }
     }
+
+    @Override
+    public void makeNewOrder(Integer userId) throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        OrderDAO orderDAO = provider.getOrderDAO();
+
+        try{
+            orderDAO.makeNewOrder(userId);
+        } catch (DAOException e){
+            throw new ServiceException("make new order exception", e);
+        }
+    }
+
+    @Override
+    public Integer getOrderId(Integer userId) throws ServiceException {
+        Integer id;
+
+        DAOProvider provider = DAOProvider.getInstance();
+        OrderDAO orderDAO = provider.getOrderDAO();
+
+        try {
+            id = orderDAO.getOrderId(userId);
+        } catch (DAOException e) {
+            throw new ServiceException("get order id exception", e);
+        }
+
+        return id;
+    }
+
+    @Override
+    public void checkOrderStatus() throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        OrderDAO orderDAO = provider.getOrderDAO();
+
+        try {
+            orderDAO.updateOrderStatus();
+        } catch (DAOException e) {
+            throw new ServiceException("update order status exception", e);
+        }
+    }
+
 }
