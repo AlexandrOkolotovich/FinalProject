@@ -28,6 +28,9 @@ public class CommandProvider {
         commands.put(CommandName.DELETEDISH, new DeleteDish());
         commands.put(CommandName.UPDATEDISH, new UpdateDish());
         commands.put(CommandName.GOTOGALLERYPAGE, new GoToGalleryPage());
+        commands.put(CommandName.GOTOABOUTPAGE, new GoToAboutPage());
+        commands.put(CommandName.GOTOMAKEORDERPAGE, new GoToMakeOrderPage());
+        commands.put(CommandName.GOTORESERVATIONPAGE, new GoToReservationPage());
     }
 
     public Command takeCommand(String name){

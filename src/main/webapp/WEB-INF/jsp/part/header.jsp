@@ -77,7 +77,7 @@
                             </li>
 
                             <li>
-                                <a href="reservation.html">${reservation}</a>
+                                <a href="Controller?command=gotoreservationpage">${reservation}</a>
                             </li>
 
                             <li>
@@ -85,7 +85,7 @@
                             </li>
 
                             <li>
-                                <a href="about.html">${about}</a>
+                                <a href="Controller?command=gotoaboutpage">${about}</a>
                             </li>
 
                         </ul>

@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.List;
 
 public class SQLOrderDAO implements OrderDAO {
-    private static final String CREATE_ORDER = "INSERT INTO orders (order_status, order_time, order_total_price, order_review, user_id) VALUES (?, ?, ?, ?, ?)";
+    private static final String CREATE_ORDER = "UPDATE orders SET order_status = ?, order_time = ?, order_total_price = ? WHERE order_id = ?";
     private static final String CREATE_ORDER_DISH = "INSERT INTO odereddishes (dish_id, order_id) VALUES (?, ?)";
     private static final String CREATE_ORDER_DRINK = "INSERT INTO ordereddrinks (drink_id, order_id) VALUES (?, ?)";
     private static final String DELETE_ORDERED_DISH = "DELETE FROM odereddishes WHERE odered_dishes_id = ?";
@@ -36,11 +36,10 @@ public class SQLOrderDAO implements OrderDAO {
         try {
             connection = connectionPool.takeConnection();
             prSt = connection.prepareStatement(CREATE_ORDER);
-            prSt.setString(1, order.getStatus().name());
+            prSt.setString(1, OrderStatus.PAID.name());
             prSt.setDate(2, (Date) order.getTime());
             prSt.setDouble(3, order.getTotalPrice());
-            prSt.setString(4, order.getReview());
-            prSt.setInt(5, order.getUserId());
+            prSt.setInt(4, order.getId());
 
             prSt.executeUpdate();
 

@@ -11,4 +11,5 @@ public interface DishDAO {
     Dish getDish(Integer id) throws DAOException;
     void updateDishNotAvailable(Integer id) throws DAOException;
     void updateDish(Dish dish) throws DAOException;
+    List<Dish> getOrderedDishes(Integer id) throws DAOException;
 }

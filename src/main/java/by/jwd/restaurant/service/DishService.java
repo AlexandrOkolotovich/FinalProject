@@ -11,4 +11,5 @@ public interface DishService {
     void makeNotAvailable(Integer id) throws ServiceException;
     Dish getDish(Integer id) throws ServiceException;
     void updateDish(Dish dish) throws ServiceException;
+    List<Dish> getOrderedDishes(Integer id) throws ServiceException;
 }

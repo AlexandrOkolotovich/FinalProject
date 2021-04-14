@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AddToOrder implements Command {
+    private static final String ATTRIBUTE_ORDER_ID = "orderId";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
         Integer dishId;
@@ -35,7 +37,10 @@ public class AddToOrder implements Command {
             if(orderId == null){
                 orderService.makeNewOrder(userId);
                 orderId = orderService.getOrderId(userId);
+
             }
+
+            session.setAttribute(ATTRIBUTE_ORDER_ID, orderId);
 
             orderService.addDishToOrder(dishId, orderId);
 

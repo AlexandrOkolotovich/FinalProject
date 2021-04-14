@@ -29,7 +29,7 @@ public class SQLDishDAO implements DishDAO {
     private static final String GET_DISH = "SELECT * FROM dishes WHERE dish_id = ?";
     private static final String UPDATE_AVAILABLE_DISH = "UPDATE dishes SET dish_is_available = ? WHERE dish_id = ?";
     private static final String UPDATE_DISH = "UPDATE dishes SET dish_title = ?, dish_description = ?, dish_price = ?, dish_calorie_content = ?, dish_is_available = ?, dish_picture_path = ? WHERE dish_id = ?";
-
+    private static final String GET_ORDERED_DISHES = "SELECT * FROM dishes JOIN odereddishes ON dishes.dish_id=odereddishes.dish_id WHERE odereddishes.order_id = ?";
 
     static {
         MySQLDriverLoader.getInstance();
@@ -193,5 +193,44 @@ public class SQLDishDAO implements DishDAO {
                 throw new DAOException(e);
             }
         }
+    }
+
+    @Override
+    public List<Dish> getOrderedDishes(Integer orderId) throws DAOException {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        Connection connection = null;
+        PreparedStatement prSt = null;
+        ResultSet resSet;
+
+        List<Dish> dishList = new ArrayList<>();
+
+        try {
+            connection = connectionPool.takeConnection();
+            prSt = connection.prepareStatement(GET_ORDERED_DISHES);
+
+            prSt.setInt(1, orderId);
+
+            resSet = prSt.executeQuery();
+            while (resSet.next()) {
+                Dish dish = new Dish();
+                dish.setId(resSet.getInt(COLUMN_LABEL_DISH_ID));
+                dish.setTitle(resSet.getString(COLUMN_LABEL_DISH_TITLE));
+                dish.setDescription(resSet.getString(COLUMN_LABEL_DISH_DESCRIPTION));
+                dish.setPrice(resSet.getDouble(COLUMN_LABEL_DISH_PRICE));
+                dish.setCalorieContent(resSet.getFloat(COLUMN_LABEL_DISH_CALORIE_CONTENT));
+                dish.setAvailable(resSet.getBoolean(COLUMN_LABEL_DISH_IS_AVAILABLE));
+                dish.setPicturePath(resSet.getString(COLUMN_LABEL_DISH_PICTURE_PATH));
+                dishList.add(dish);
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, prSt);
+            }catch (ConnectionPoolException e){
+                throw new DAOException(e);
+            }
+        }
+        return dishList;
     }
 }

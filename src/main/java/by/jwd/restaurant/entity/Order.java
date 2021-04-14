@@ -53,6 +53,11 @@ public class Order implements Serializable {
         this.review = review;
         this.userId = userId;
     }
+    public Order(Date date, double totalPrice, Integer id) {
+        this.time = date;
+        this.totalPrice = totalPrice;
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;

@@ -18,7 +18,7 @@ public class GoToMainPage implements Command {
         HttpSession session = request.getSession();
 
         if(session == null) {
-            response.sendRedirect("Controller?command=gotologinpage&message=eeerrror2");
+            response.sendRedirect("Controller?command=gotohomepage&message=eeerrror2");
             return;
         }
 

@@ -1,5 +1,6 @@
 package by.jwd.restaurant.service;
 
+import by.jwd.restaurant.entity.Dish;
 import by.jwd.restaurant.entity.Order;
 import by.jwd.restaurant.service.exception.ServiceException;
 
@@ -13,4 +14,5 @@ public interface OrderService {
     void makeNewOrder(Integer userId) throws ServiceException;
     Integer getOrderId(Integer userId) throws ServiceException;
     void checkOrderStatus() throws ServiceException;
+    Double getTotalPrice(List<Dish> dishList) throws ServiceException;
 }

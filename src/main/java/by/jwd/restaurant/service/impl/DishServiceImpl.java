@@ -80,4 +80,20 @@ public class DishServiceImpl implements DishService {
         }
     }
 
+    @Override
+    public List<Dish> getOrderedDishes(Integer orderId) throws ServiceException {
+        List<Dish> orderedDishes = null;
+
+        DAOProvider provider = DAOProvider.getInstance();
+        DishDAO dishDAO = provider.getDishDAO();
+
+        try {
+            orderedDishes = dishDAO.getOrderedDishes(orderId);
+        } catch (DAOException e) {
+            throw new ServiceException("get dishes exception", e);
+        }
+
+        return orderedDishes;
+    }
+
 }

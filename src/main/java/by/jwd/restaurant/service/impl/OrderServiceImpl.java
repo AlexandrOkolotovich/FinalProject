@@ -3,6 +3,7 @@ package by.jwd.restaurant.service.impl;
 import by.jwd.restaurant.dao.DAOProvider;
 import by.jwd.restaurant.dao.OrderDAO;
 import by.jwd.restaurant.dao.exception.DAOException;
+import by.jwd.restaurant.entity.Dish;
 import by.jwd.restaurant.entity.Order;
 import by.jwd.restaurant.service.OrderService;
 import by.jwd.restaurant.service.exception.ServiceException;
@@ -22,8 +23,6 @@ public class OrderServiceImpl implements OrderService {
         }
         return true;
     }
-
-
 
     @Override
     public List<Order> getAllOrders() throws ServiceException {
@@ -105,6 +104,17 @@ public class OrderServiceImpl implements OrderService {
         } catch (DAOException e) {
             throw new ServiceException("update order status exception", e);
         }
+    }
+
+    @Override
+    public Double getTotalPrice(List<Dish> dishList) throws ServiceException {
+        double totalPrice = 0;
+
+        for(Dish dish : dishList){
+            totalPrice+=dish.getPrice();
+        }
+
+        return totalPrice;
     }
 
 }
