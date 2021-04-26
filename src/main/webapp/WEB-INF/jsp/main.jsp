@@ -45,6 +45,8 @@
             <form action="Controller" method="post">
                 <a href="Controller?command=gotomenupage" class="txt4">${viewingDishes}</a><br/>
                 <a href="Controller?command=gotomakeorderpage" class="txt4">${makeOrder}</a><br/><br/>
+
+                <a href="Controller?command=gotouserorderspage" class="txt4">Посмотреть заказы</a><br/><br/>
             </form>
         </c:if>
     </div>

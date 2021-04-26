@@ -14,4 +14,5 @@ public interface OrderDAO {
     void makeNewOrder(Integer userId) throws DAOException;
     Integer getOrderId(Integer userId) throws DAOException;
     void updateOrderStatus() throws DAOException;
+    List<Order> getUserOrders(Integer userId) throws DAOException;
 }

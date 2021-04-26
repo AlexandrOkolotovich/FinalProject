@@ -57,13 +57,13 @@
 								</span>
 
             <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                <input class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="date">
-                <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
+                <input class="bo-rad-10 sizefull txt10 p-l-20" type="datetime-local" name="date">
+
             </div>
             <span class="txt22 m-t-20">
-        Total price:  BYN
-                <c:out value="${requestScope.totalPrice}" /> BYN
-               <input type="hidden" name="totalPrice" value="${requestScope.totalPrice}"/>
+        Total price:
+                <c:out value="${sessionScope.totalPrice}" /> BYN
+
     </span>
             <br/>
             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">${makeorderButton}</button>

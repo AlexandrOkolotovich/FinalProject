@@ -1,8 +1,8 @@
 package by.jwd.restaurant.controller.command.impl;
 
+import by.jwd.restaurant.constant.RegularExpressions;
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.entity.Order;
-import by.jwd.restaurant.entity.OrderStatus;
 import by.jwd.restaurant.service.OrderService;
 import by.jwd.restaurant.service.ServiceProvider;
 import by.jwd.restaurant.service.exception.ServiceException;
@@ -19,23 +19,19 @@ import java.util.Date;
 public class MakeOrder implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        String dateStr;
+        Date date = null;
         double totalPrice;
         Integer orderId;
 
         HttpSession session = request.getSession();
 
-        dateStr = request.getParameter("date");
-        totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
-        orderId = (Integer) session.getAttribute("orderId");
-
-        SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
         try {
-            date = in.parse(dateStr);
+            date = new SimpleDateFormat(RegularExpressions.DATE_REGEX).parse(request.getParameter("date"));
         } catch (ParseException e) {
-            throw new ServiceException("date parser exception", e);
+            throw new ServiceException("date format exception", e);
         }
+        totalPrice = (Double) session.getAttribute("totalPrice");
+        orderId = (Integer) session.getAttribute("orderId");
 
         Order order = new Order(date, totalPrice, orderId);
 

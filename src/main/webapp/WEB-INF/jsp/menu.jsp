@@ -14,6 +14,20 @@
         Menu
     </h2>
 </section>
+<!--
+<section style="padding-left: 50px">
+    <input placeholder="Search" style="width: 400px" class="bo-rad-10 txt36 p-l-20 size17">
+</section>
+
+<section style="padding-left: 50px" >
+    <select style="width: 200px" class="bo-rad-7 txt32 p-l-20 size1">
+        <option>По алфавиту</option>
+        <option>Цена ↑</option>
+        <option>Цена ↓</option>
+    </select>
+</section>
+<br>-->
+
 <section class="section-lunch bgwhite">
     <div class="container">
 
@@ -109,8 +123,6 @@
                     </c:forEach>
                 </div>
             </div>
-
-
         </c:if>
 
     </div>

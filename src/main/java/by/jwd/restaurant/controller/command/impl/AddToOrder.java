@@ -44,7 +44,7 @@ public class AddToOrder implements Command {
 
             orderService.addDishToOrder(dishId, orderId);
 
-            response.sendRedirect("Controller?command=gotomenupage");
+            response.sendRedirect("Controller?command=gotomenupage&message=success add to order");
         } catch (ServiceException e){
             response.sendRedirect("Controller?command=gotomenupage&message=wrong in adding dish to order");
         }

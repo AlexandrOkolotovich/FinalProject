@@ -15,4 +15,5 @@ public interface OrderService {
     Integer getOrderId(Integer userId) throws ServiceException;
     void checkOrderStatus() throws ServiceException;
     Double getTotalPrice(List<Dish> dishList) throws ServiceException;
+    List<Order> getUserOrders(Integer userId) throws ServiceException;
 }

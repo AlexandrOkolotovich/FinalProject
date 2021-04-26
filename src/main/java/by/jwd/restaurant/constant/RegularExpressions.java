@@ -6,5 +6,6 @@ public final class RegularExpressions {
     public static final String PHONE_REGEX = "^((\\+375))((29|44|33|25))[\\d]{7}$";
     public static final String EMAIL_REGEX = "^([a-zA-Z0-9_-]+\\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*\\.[a-zA-Z]{2,6}$";
     public static final String PASSWORD_REGEX = "^[a-zA-Z0-9]{6,15}$";
+    public static final String DATE_REGEX = "yyyy-MM-dd'T'HH:mm";
 
 }

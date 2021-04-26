@@ -20,14 +20,19 @@
     <url-pattern>/Controller</url-pattern>
   </servlet-mapping>
 
+  <session-config>
+    <session-timeout>5</session-timeout>
+  </session-config>
+
   <servlet>
     <servlet-name>Registration</servlet-name>
     <jsp-file>/WEB-INF/jsp/registration.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>Registration</servlet-name>
-    <url-pattern>/Registration</url-pattern>
+    <url-pattern>/registration</url-pattern>
   </servlet-mapping>
+
 
   <filter>
     <display-name>RequestLoggingFilter</display-name>

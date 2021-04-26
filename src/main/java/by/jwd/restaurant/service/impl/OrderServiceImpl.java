@@ -117,4 +117,19 @@ public class OrderServiceImpl implements OrderService {
         return totalPrice;
     }
 
+    @Override
+    public List<Order> getUserOrders(Integer userId) throws ServiceException {
+        DAOProvider provider = DAOProvider.getInstance();
+        OrderDAO orderDAO = provider.getOrderDAO();
+
+        List<Order> orders = null;
+        try {
+            orders = orderDAO.getUserOrders(userId);
+        } catch (DAOException e) {
+            throw new ServiceException("get user orders exception", e);
+        }
+
+        return orders;
+    }
+
 }

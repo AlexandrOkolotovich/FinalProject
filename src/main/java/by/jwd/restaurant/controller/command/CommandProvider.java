@@ -31,6 +31,7 @@ public class CommandProvider {
         commands.put(CommandName.GOTOABOUTPAGE, new GoToAboutPage());
         commands.put(CommandName.GOTOMAKEORDERPAGE, new GoToMakeOrderPage());
         commands.put(CommandName.GOTORESERVATIONPAGE, new GoToReservationPage());
+        commands.put(CommandName.GOTOUSERORDERSPAGE, new GoToUserOrdersPage());
     }
 
     public Command takeCommand(String name){

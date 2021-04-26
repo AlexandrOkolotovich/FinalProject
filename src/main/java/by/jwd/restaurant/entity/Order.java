@@ -1,9 +1,8 @@
 package by.jwd.restaurant.entity;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Order implements Serializable {
     private Integer id;
@@ -14,8 +13,11 @@ public class Order implements Serializable {
     private String review;
     private Integer userId;
     private Integer tableReservationId;
+
     private Dish dish;
     private Drink drink;
+
+    private List<Dish> dishList;
 
     public Order() {
     }
@@ -137,6 +139,14 @@ public class Order implements Serializable {
 
     public void setDrink(Drink drink) {
         this.drink = drink;
+    }
+
+    public List<Dish> getDishList() {
+        return dishList;
+    }
+
+    public void setDishList(List<Dish> dishList) {
+        this.dishList = dishList;
     }
 
     @Override

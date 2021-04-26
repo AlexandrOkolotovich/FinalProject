@@ -42,7 +42,8 @@ public class GoToMakeOrderPage implements Command {
             totalPrice = orderService.getTotalPrice(orderedDishes);
 
             request.setAttribute(ATTRIBUTE_ORDERED_DISHES, orderedDishes);
-            request.setAttribute(ATTRIBUTE_TOTAL_PRICE, totalPrice);
+        //    request.setAttribute(ATTRIBUTE_TOTAL_PRICE, totalPrice);
+            session.setAttribute(ATTRIBUTE_TOTAL_PRICE, totalPrice);
 
         }catch (ServiceException e){
             response.sendRedirect("Controller?command=gotohomepage&message=wrong in catch");
