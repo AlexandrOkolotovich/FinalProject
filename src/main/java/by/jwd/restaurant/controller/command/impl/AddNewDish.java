@@ -1,5 +1,6 @@
 package by.jwd.restaurant.controller.command.impl;
 
+import by.jwd.restaurant.constant.SessionAttributes;
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.entity.Dish;
 import by.jwd.restaurant.service.DishService;
@@ -23,12 +24,12 @@ public class AddNewDish implements Command {
         boolean isAvailable;
         String picturePath;
 
-        title = request.getParameter("title");
-        description = request.getParameter("description");
-        price = Double.parseDouble(request.getParameter("price"));
-        calorieContent = Float.parseFloat(request.getParameter("calorieContent"));
-        isAvailable = Boolean.parseBoolean(request.getParameter("isAvailable"));
-        picturePath = PATH_TO_PICTURE + request.getParameter("picturePath");
+        title = request.getParameter(SessionAttributes.TITLE);
+        description = request.getParameter(SessionAttributes.ATTRIBUTE_DESCRIPTION);
+        price = Double.parseDouble(request.getParameter(SessionAttributes.ATTRIBUTE_PRICE));
+        calorieContent = Float.parseFloat(request.getParameter(SessionAttributes.ATTRIBUTE_CALORIE_CONTENT));
+        isAvailable = Boolean.parseBoolean(request.getParameter(SessionAttributes.ATTRIBUTE_IS_AVAILABLE));
+        picturePath = PATH_TO_PICTURE + request.getParameter(SessionAttributes.ATTRIBUTE_PICTURE_PATH);
 
         Dish dish = new Dish(title, description, price, calorieContent, isAvailable, picturePath);
 

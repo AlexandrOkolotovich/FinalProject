@@ -2,8 +2,7 @@ package by.jwd.restaurant.controller.command.impl.go;
 
 import by.jwd.restaurant.constant.SessionAttributes;
 import by.jwd.restaurant.controller.command.Command;
-import by.jwd.restaurant.entity.Dish;
-import by.jwd.restaurant.service.DishService;
+import by.jwd.restaurant.entity.Order;
 import by.jwd.restaurant.service.OrderService;
 import by.jwd.restaurant.service.ServiceProvider;
 import by.jwd.restaurant.service.exception.ServiceException;
@@ -14,29 +13,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
-public class GoToMenuPage implements Command {
-
+public class GoToAllUserOrdersPage implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
         ServiceProvider provider = ServiceProvider.getInstance();
-        DishService dishService = provider.getDishService();
+        OrderService orderService = provider.getOrderService();
 
         HttpSession session = request.getSession();
 
-        try {
-            List<Dish> dishes = dishService.getDishes();
-            request.setAttribute(SessionAttributes.ATTRIBUTE_DISHES, dishes);
+        List<Order> orders = orderService.getAllOrders();
 
-        }catch (ServiceException e){
-            response.sendRedirect("Controller?command=gotohomepage&message=wrong in catch");
-        }
+        Date today = new Date();
 
-        session.setAttribute(SessionAttributes.PAGE, "Controller?command=gotomenupage");
+        request.setAttribute(SessionAttributes.ATTRIBUTE_ORDERS, orders);
+        request.setAttribute(SessionAttributes.ATTRIBUTE_TODAY, today);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
+        session.setAttribute(SessionAttributes.PAGE, "Controller?command=gotoalluserorderspage");
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/admin/userOrders.jsp");
         requestDispatcher.forward(request, response);
-
     }
 }

@@ -10,7 +10,7 @@ public interface OrderDAO {
     Order createOrder(Order order) throws DAOException;
     void createOrderDish(Integer dishId, Integer orderId) throws DAOException;
     Order createOrderDrink(Order order) throws DAOException;
-    void deleteOrderedDish(Integer orderedDishId) throws DAOException;
+    void deleteOrderedDish(Integer dishId, Integer orderId) throws DAOException;
     void makeNewOrder(Integer userId) throws DAOException;
     Integer getOrderId(Integer userId) throws DAOException;
     void updateOrderStatus() throws DAOException;

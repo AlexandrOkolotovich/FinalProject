@@ -55,12 +55,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteDishInOrder(Integer orderedDishId) throws ServiceException {
+    public void deleteDishInOrder(Integer dishId, Integer orderId) throws ServiceException {
         DAOProvider provider = DAOProvider.getInstance();
         OrderDAO orderDAO = provider.getOrderDAO();
 
         try{
-            orderDAO.deleteOrderedDish(orderedDishId);
+            orderDAO.deleteOrderedDish(dishId, orderId);
         } catch (DAOException e){
             throw new ServiceException("delete ordered dish exception", e);
         }

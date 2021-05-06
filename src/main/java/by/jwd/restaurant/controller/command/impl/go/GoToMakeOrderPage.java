@@ -1,5 +1,6 @@
 package by.jwd.restaurant.controller.command.impl.go;
 
+import by.jwd.restaurant.constant.SessionAttributes;
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.entity.Dish;
 import by.jwd.restaurant.service.DishService;
@@ -16,8 +17,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class GoToMakeOrderPage implements Command {
-    private static final String ATTRIBUTE_ORDERED_DISHES = "orderedDishes";
-    private static final String ATTRIBUTE_TOTAL_PRICE = "totalPrice";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
@@ -26,10 +25,10 @@ public class GoToMakeOrderPage implements Command {
 
         HttpSession session = request.getSession();
 
-        orderId = (Integer) session.getAttribute("orderId");
+        orderId = (Integer) session.getAttribute(SessionAttributes.ATTRIBUTE_ORDER_ID);
 
         if(orderId == null) {
-            response.sendRedirect("Controller?command=gotomainpage&message=not orders");
+            response.sendRedirect("Controller?command=gotomenupage&message=not orders");
             return;
         }
 
@@ -41,14 +40,16 @@ public class GoToMakeOrderPage implements Command {
             List<Dish> orderedDishes = dishService.getOrderedDishes(orderId);
             totalPrice = orderService.getTotalPrice(orderedDishes);
 
-            request.setAttribute(ATTRIBUTE_ORDERED_DISHES, orderedDishes);
-        //    request.setAttribute(ATTRIBUTE_TOTAL_PRICE, totalPrice);
-            session.setAttribute(ATTRIBUTE_TOTAL_PRICE, totalPrice);
+            request.setAttribute(SessionAttributes.ATTRIBUTE_ORDERED_DISHES, orderedDishes);
+
+            session.setAttribute(SessionAttributes.ATTRIBUTE_TOTAL_PRICE, totalPrice);
+            session.setAttribute(SessionAttributes.ATTRIBUTE_ORDER_ID, orderId);
 
         }catch (ServiceException e){
             response.sendRedirect("Controller?command=gotohomepage&message=wrong in catch");
         }
 
+        session.setAttribute(SessionAttributes.PAGE, "Controller?command=gotomakeorderpage");
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user/makeOrder.jsp");
         requestDispatcher.forward(request, response);

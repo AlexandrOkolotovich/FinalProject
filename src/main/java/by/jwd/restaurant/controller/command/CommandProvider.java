@@ -32,6 +32,8 @@ public class CommandProvider {
         commands.put(CommandName.GOTOMAKEORDERPAGE, new GoToMakeOrderPage());
         commands.put(CommandName.GOTORESERVATIONPAGE, new GoToReservationPage());
         commands.put(CommandName.GOTOUSERORDERSPAGE, new GoToUserOrdersPage());
+        commands.put(CommandName.GOTOALLUSERORDERSPAGE, new GoToAllUserOrdersPage());
+        commands.put(CommandName.DELETEDISHINORDER, new DeleteDishInOrder());
     }
 
     public Command takeCommand(String name){

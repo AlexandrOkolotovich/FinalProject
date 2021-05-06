@@ -12,49 +12,46 @@
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
          style="background-image: url(${pageContext.request.contextPath}/static/img/bg-title-page-02.jpg);">
     <h2 class="tit6 t-center">
-        My orders
+        Users orders
     </h2>
 </section>
 
 <section class="section-lunch bgwhite">
     <div class="container">
-
         <div class="row p-t-108 p-b-70">
 
-            <div class="col-md-8 col-lg-6 m-l-r-auto">
 
-                <c:forEach items="${requestScope.orders}" var="orders">
 
-                    <c:if test="${orders.time >= requestScope.today}">
-                    <!-- Block3 -->
+                <table style="width: 100%">
+                    <tr>
+                        <td>User id</td>
+                        <td>Time</td>
+                        <td>Dishes</td>
+                        <td>Price</td>
+                    </tr>
 
-                       <div class="blo3 flex-w flex-col-l-sm m-b-30">
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                    ${orders.time}
-                            </a>
-
-                            <span class="txt22">
+                    <c:forEach items="${requestScope.orders}" var="orders">
+                        <c:if test="${orders.status eq 'PAID'}">
+                                <tr>
+                                    <td>${orders.userId}</td>
+                            <td>${orders.time}</td>
+                            <td>
                             <c:forEach items="${orders.dishes}" var="dish">
                                 ${dish.title} - ${dish.price} BUN <br/>
                             </c:forEach>
-                            </span>
+                            </td>
+                            <td>${orders.totalPrice} BYN</td>
 
-                            <span class="txt22 m-t-20">
-                                    ${orders.totalPrice} BYN
-							    </span>
-                                <br/><br/>
-                        </div>
+                    </tr><br/>
+                        </c:if>
 
-                    </div>
+                    </c:forEach>
 
-                    </c:if>
-                </c:forEach>
+                </table>
 
-            </div>
         </div>
     </div>
+
 </section>
 
 <jsp:include page="../part/footer.jsp"/>

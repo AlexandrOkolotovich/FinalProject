@@ -1,5 +1,6 @@
 package by.jwd.restaurant.controller.command.impl;
 
+import by.jwd.restaurant.constant.SessionAttributes;
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.entity.Order;
 import by.jwd.restaurant.service.DishService;
@@ -15,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AddToOrder implements Command {
-    private static final String ATTRIBUTE_ORDER_ID = "orderId";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
@@ -25,8 +25,8 @@ public class AddToOrder implements Command {
 
         HttpSession session = request.getSession();
 
-        dishId = Integer.valueOf(request.getParameter("dishId"));
-        userId = (Integer) session.getAttribute("userId");
+        dishId = Integer.valueOf(request.getParameter(SessionAttributes.ATTRIBUTE_DISH_ID));
+        userId = (Integer) session.getAttribute(SessionAttributes.ATTRIBUTE_USER_ID);
 
         ServiceProvider serviceProvider = ServiceProvider.getInstance();
         OrderService orderService = serviceProvider.getOrderService();
@@ -40,7 +40,7 @@ public class AddToOrder implements Command {
 
             }
 
-            session.setAttribute(ATTRIBUTE_ORDER_ID, orderId);
+            session.setAttribute(SessionAttributes.ATTRIBUTE_ORDER_ID, orderId);
 
             orderService.addDishToOrder(dishId, orderId);
 

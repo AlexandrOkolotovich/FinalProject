@@ -16,12 +16,13 @@ public class SQLOrderDAO implements OrderDAO {
     private static final String CREATE_ORDER = "UPDATE orders SET order_status = ?, order_time = ?, order_total_price = ? WHERE order_id = ?";
     private static final String CREATE_ORDER_DISH = "INSERT INTO odereddishes (dish_id, order_id) VALUES (?, ?)";
     private static final String CREATE_ORDER_DRINK = "INSERT INTO ordereddrinks (drink_id, order_id) VALUES (?, ?)";
-    private static final String DELETE_ORDERED_DISH = "DELETE FROM odereddishes WHERE odered_dishes_id = ?";
+    private static final String DELETE_ORDERED_DISH = "DELETE FROM odereddishes WHERE dish_id = ? AND order_id = ?";
     private static final String CREATE_NEW_ORDER = "INSERT INTO orders (order_status, user_id) VALUES (?, ?)";
     private static final String GET_ORDER_ID = "SELECT order_id FROM orders WHERE order_status = ? AND user_id = ?";
     private static final String UPDATE_ORDER_STATUS = "UPDATE orders SET order_status = ? WHERE order_status = ?";
     private static final String GET_USER_ORDERS = "SELECT * FROM orders WHERE user_id = ?";
-    private static final String GET_ORDERED_DISHES = "SELECT dishes.dish_title, odereddishes.dish_id FROM dishes JOIN odereddishes ON dishes.dish_id=odereddishes.dish_id WHERE odereddishes.order_id=?";
+    private static final String GET_ORDERS = "SELECT * FROM orders";
+    private static final String GET_ORDERED_DISHES = "SELECT dishes.dish_title, dishes.dish_price, odereddishes.dish_id FROM dishes JOIN odereddishes ON dishes.dish_id=odereddishes.dish_id WHERE odereddishes.order_id=?";
 
     private static final String COLUMN_LABEL_ORDER_ID = "order_id";
     private static final String COLUMN_LABEL_ORDER_STATUS = "order_status";
@@ -32,11 +33,7 @@ public class SQLOrderDAO implements OrderDAO {
     private static final String COLUMN_LABEL_ORDER_PAYMENT_METHOD_ID = "order_payment_method_id";
     private static final String COLUMN_LABEL_ORDER_TABLE_RESERVATION_ID = "table_reservation_id";
     private static final String COLUMN_LABEL_DISH_TITLE = "dish_title";
-
-    @Override
-    public List<Order> getAll() throws DAOException {
-        return null;
-    }
+    private static final String COLUMN_LABEL_DISH_PRICE = "dish_price";
 
     @Override
     public Order createOrder(Order order) throws DAOException {
@@ -121,7 +118,7 @@ public class SQLOrderDAO implements OrderDAO {
     }
 
     @Override
-    public void deleteOrderedDish(Integer orderedDishId) throws DAOException {
+    public void deleteOrderedDish(Integer dishId, Integer orderId) throws DAOException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         Connection connection = null;
         PreparedStatement prSt = null;
@@ -130,7 +127,8 @@ public class SQLOrderDAO implements OrderDAO {
             connection = connectionPool.takeConnection();
 
             prSt = connection.prepareStatement(DELETE_ORDERED_DISH);
-            prSt.setInt(1, orderedDishId);
+            prSt.setInt(1, dishId);
+            prSt.setInt(2, orderId);
 
             prSt.executeUpdate();
         } catch(SQLException | ConnectionPoolException e) {
@@ -254,7 +252,50 @@ public class SQLOrderDAO implements OrderDAO {
                 order.setOrderPaymentMethodId(resSet.getInt(COLUMN_LABEL_ORDER_PAYMENT_METHOD_ID));
                 order.setTableReservationId(resSet.getInt(COLUMN_LABEL_ORDER_TABLE_RESERVATION_ID));
 
-                order.setDishList(getOrderedDishes(order.getId()));
+                order.setDishes(getOrderedDishes(order.getId()));
+
+                orders.add(order);
+            }
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, prSt);
+            }catch (ConnectionPoolException e){
+                throw new DAOException(e);
+            }
+        }
+
+        return orders;
+    }
+
+    @Override
+    public List<Order> getAll() throws DAOException {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        Connection connection = null;
+        PreparedStatement prSt = null;
+        ResultSet resSet;
+
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            connection = connectionPool.takeConnection();
+            prSt = connection.prepareStatement(GET_ORDERS);
+
+            resSet = prSt.executeQuery();
+            while (resSet.next()) {
+                Order order = new Order();
+                order.setId(resSet.getInt(COLUMN_LABEL_ORDER_ID));
+                order.setStatus(OrderStatus.valueOf(resSet.getString(COLUMN_LABEL_ORDER_STATUS)));
+                order.setTime(resSet.getTimestamp(COLUMN_LABEL_ORDER_TIME));
+                order.setTotalPrice(resSet.getDouble(COLUMN_LABEL_ORDER_TOTAL_PRICE));
+                order.setReview(resSet.getString(COLUMN_LABEL_ORDER_REVIEW));
+                order.setUserId(resSet.getInt(COLUMN_LABEL_ORDER_USER_ID));
+                order.setOrderPaymentMethodId(resSet.getInt(COLUMN_LABEL_ORDER_PAYMENT_METHOD_ID));
+                order.setTableReservationId(resSet.getInt(COLUMN_LABEL_ORDER_TABLE_RESERVATION_ID));
+
+                order.setDishes(getOrderedDishes(order.getId()));
 
                 orders.add(order);
             }
@@ -280,6 +321,7 @@ public class SQLOrderDAO implements OrderDAO {
 
         List<Dish> dishList = new ArrayList<>();
 
+
         try {
             connection = connectionPool.takeConnection();
             prSt = connection.prepareStatement(GET_ORDERED_DISHES);
@@ -290,6 +332,7 @@ public class SQLOrderDAO implements OrderDAO {
                 Dish dish = new Dish();
 
                 dish.setTitle(resSet.getString(COLUMN_LABEL_DISH_TITLE));
+                dish.setPrice(resSet.getDouble(COLUMN_LABEL_DISH_PRICE));
 
                 dishList.add(dish);
             }

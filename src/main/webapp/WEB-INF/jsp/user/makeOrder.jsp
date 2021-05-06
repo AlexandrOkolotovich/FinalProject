@@ -28,6 +28,10 @@
     <div class="row p-t-108 p-b-70">
         <div class="col-md-8 col-lg-6 m-l-r-auto">
             <c:forEach items="${requestScope.orderedDishes}" var="dishes">
+                <form id="deleteDish" action="Controller" method="post">
+                    <input type="hidden" name="command" value="deleteDishInOrder"/>
+                </form>
+
                 <!-- Block3 -->
                 <div class="blo3 flex-w flex-col-l-sm m-b-30">
                     <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
@@ -47,6 +51,10 @@
                         <span class="txt22 m-t-20">
                             ${dishes.price} BYN
                     </span>
+                        <span>
+                            <button form="deleteDish" class="btn btn-danger delete2" type="submit"
+                                    value="${dishes.id}" name="dishId">Delete</button>
+                        </span>
                     </div>
                 </div>
             </c:forEach>

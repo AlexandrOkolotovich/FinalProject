@@ -1,6 +1,7 @@
 package by.jwd.restaurant.controller.command.impl;
 
 import by.jwd.restaurant.constant.RegularExpressions;
+import by.jwd.restaurant.constant.SessionAttributes;
 import by.jwd.restaurant.controller.command.Command;
 import by.jwd.restaurant.entity.Order;
 import by.jwd.restaurant.service.OrderService;
@@ -26,12 +27,12 @@ public class MakeOrder implements Command {
         HttpSession session = request.getSession();
 
         try {
-            date = new SimpleDateFormat(RegularExpressions.DATE_REGEX).parse(request.getParameter("date"));
+            date = new SimpleDateFormat(RegularExpressions.DATE_REGEX).parse(request.getParameter(SessionAttributes.ATTRIBUTE_DATE));
         } catch (ParseException e) {
             throw new ServiceException("date format exception", e);
         }
-        totalPrice = (Double) session.getAttribute("totalPrice");
-        orderId = (Integer) session.getAttribute("orderId");
+        totalPrice = (Double) session.getAttribute(SessionAttributes.ATTRIBUTE_TOTAL_PRICE);
+        orderId = (Integer) session.getAttribute(SessionAttributes.ATTRIBUTE_ORDER_ID);
 
         Order order = new Order(date, totalPrice, orderId);
 

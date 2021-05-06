@@ -1,7 +1,9 @@
 package by.jwd.restaurant.controller.command.impl;
 
+import by.jwd.restaurant.constant.SessionAttributes;
 import by.jwd.restaurant.entity.RegistrationInfo;
 import by.jwd.restaurant.controller.command.Command;
+import by.jwd.restaurant.entity.Role;
 import by.jwd.restaurant.service.exception.ServiceException;
 import by.jwd.restaurant.service.ServiceProvider;
 import by.jwd.restaurant.service.UserService;
@@ -21,11 +23,11 @@ public class Registration implements Command {
         String email;
         String password;
 
-        name = request.getParameter("name");
-        surname = request.getParameter("surname");
-        phone = request.getParameter("phone");
-        email = request.getParameter("email");
-        password = request.getParameter("password");
+        name = request.getParameter(SessionAttributes.ATTRIBUTE_NAME);
+        surname = request.getParameter(SessionAttributes.ATTRIBUTE_SURNAME);
+        phone = request.getParameter(SessionAttributes.ATTRIBUTE_PHONE);
+        email = request.getParameter(SessionAttributes.ATTRIBUTE_EMAIL);
+        password = request.getParameter(SessionAttributes.ATTRIBUTE_PASSWORD);
 
         RegistrationInfo registrationInfo = new RegistrationInfo(name, surname, phone, email, password);
 
@@ -36,7 +38,8 @@ public class Registration implements Command {
             userService.registration(registrationInfo);
 
             HttpSession session = request.getSession(true);
-            session.setAttribute("auth", true);
+
+            session.setAttribute(SessionAttributes.ATTRIBUTE_USER_ROLE, Role.USER);
             response.sendRedirect("Controller?command=gotomainpage");
         } catch (ServiceException e) {
             response.sendRedirect("Controller?command=gotoregistrationpage&message=wrong in registration");

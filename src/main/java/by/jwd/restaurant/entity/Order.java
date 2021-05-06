@@ -17,7 +17,7 @@ public class Order implements Serializable {
     private Dish dish;
     private Drink drink;
 
-    private List<Dish> dishList;
+    private List<Dish> dishes;
 
     public Order() {
     }
@@ -141,12 +141,12 @@ public class Order implements Serializable {
         this.drink = drink;
     }
 
-    public List<Dish> getDishList() {
-        return dishList;
+    public List<Dish> getDishes() {
+        return dishes;
     }
 
-    public void setDishList(List<Dish> dishList) {
-        this.dishList = dishList;
+    public void setDishes(List<Dish> dishes) {
+        this.dishes = dishes;
     }
 
     @Override
