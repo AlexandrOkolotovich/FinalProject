@@ -8,8 +8,11 @@
     <fmt:setLocale value="${sessionScope.locale}"/>
     <fmt:setBundle basename="locale" var="loc"/>
     <fmt:message bundle="${loc}" key="makeorder.lable" var="makeorder"/>
-
     <fmt:message bundle="${loc}" key="makeorder.button" var="makeorderButton"/>
+    <fmt:message bundle="${loc}" key="makeorder.lable.calorieContent" var="calorieContent"/>
+    <fmt:message bundle="${loc}" key="makeorder.deleteButton" var="deleteButton"/>
+    <fmt:message bundle="${loc}" key="makeorder.lable.date" var="date"/>
+    <fmt:message bundle="${loc}" key="makeorder.lable.totalPrice" var="totalPrice"/>
 </head>
 <body>
 <jsp:include page="../part/header.jsp"/>
@@ -45,7 +48,7 @@
 
                         <span class="txt23">
                             ${dishes.description}<br/>
-                                Calorie content: ${dishes.calorieContent}
+                                ${calorieContent} ${dishes.calorieContent}
                         </span>
 
                         <span class="txt22 m-t-20">
@@ -53,7 +56,7 @@
                     </span>
                         <span>
                             <button form="deleteDish" class="btn btn-danger delete2" type="submit"
-                                    value="${dishes.id}" name="dishId">Delete</button>
+                                    value="${dishes.id}" name="dishId">${deleteButton}</button>
                         </span>
                     </div>
                 </div>
@@ -61,7 +64,7 @@
 
             <!-- Date -->
             <span class="txt9">
-									Date
+									${date}
 								</span>
 
             <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
@@ -69,7 +72,7 @@
 
             </div>
             <span class="txt22 m-t-20">
-        Total price:
+        ${totalPrice}
                 <c:out value="${sessionScope.totalPrice}" /> BYN
 
     </span>

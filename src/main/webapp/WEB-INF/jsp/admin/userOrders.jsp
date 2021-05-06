@@ -3,7 +3,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>user orders</title>
+
+    <fmt:setLocale value="${sessionScope.locale}" />
+    <fmt:setBundle basename="locale" var="loc" />
+    <fmt:message bundle="${loc}" key="userorders.lable" var="userorders"/>
+    <fmt:message bundle="${loc}" key="userorders.lable.userid" var="userid"/>
+    <fmt:message bundle="${loc}" key="userorders.lable.time" var="time"/>
+    <fmt:message bundle="${loc}" key="userorders.lable.dishes" var="dishes"/>
+    <fmt:message bundle="${loc}" key="userorders.lable.price" var="price"/>
 </head>
 <body>
 <jsp:include page="../part/header.jsp"/>
@@ -12,7 +20,7 @@
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
          style="background-image: url(${pageContext.request.contextPath}/static/img/bg-title-page-02.jpg);">
     <h2 class="tit6 t-center">
-        Users orders
+        ${userorders}
     </h2>
 </section>
 
@@ -20,14 +28,12 @@
     <div class="container">
         <div class="row p-t-108 p-b-70">
 
-
-
                 <table style="width: 100%">
                     <tr>
-                        <td>User id</td>
-                        <td>Time</td>
-                        <td>Dishes</td>
-                        <td>Price</td>
+                        <td>${userid}</td>
+                        <td>${time}</td>
+                        <td>${dishes}</td>
+                        <td>${price}</td>
                     </tr>
 
                     <c:forEach items="${requestScope.orders}" var="orders">

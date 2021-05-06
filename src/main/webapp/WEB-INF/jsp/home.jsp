@@ -3,6 +3,10 @@
 <html>
 <head>
     <title>Home</title>
+    <fmt:setLocale value="${sessionScope.locale}" />
+    <fmt:setBundle basename="locale" var="loc" />
+    <fmt:message bundle="${loc}" key="home.lable.welcome" var="welcome"/>
+    <fmt:message bundle="${loc}" key="home.lable.lookmenu" var="lookmenu"/>
 </head>
 <body>
     <jsp:include page="part/header.jsp"/>
@@ -14,7 +18,7 @@
                 <div class="item-slick1 item1-slick1" style="background-image: url(${pageContext.request.contextPath}/static/img/slide1-01.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-							Welcome to
+							${welcome}
 						</span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
@@ -24,7 +28,7 @@
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
                             <!-- Button1 -->
                             <a href="Controller?command=gotomenupage" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                ${lookmenu}
                             </a>
                         </div>
                     </div>
@@ -33,7 +37,7 @@
                 <div class="item-slick1 item2-slick1" style="background-image: url(${pageContext.request.contextPath}/static/img/master-slides-02.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
-							Welcome to
+                            ${welcome}
 						</span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
@@ -43,7 +47,7 @@
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
                             <!-- Button1 -->
                             <a href="Controller?command=gotomenupage" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                ${lookmenu}
                             </a>
                         </div>
                     </div>
@@ -52,7 +56,7 @@
                 <div class="item-slick1 item3-slick1" style="background-image: url(${pageContext.request.contextPath}/static/img/master-slides-01.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
-							Welcome to
+                            ${welcome}
 						</span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="rotateInUpRight">
@@ -62,7 +66,7 @@
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="rotateIn">
                             <!-- Button1 -->
                             <a href="Controller?command=gotomenupage" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                ${lookmenu}
                             </a>
                         </div>
                     </div>
@@ -85,15 +89,15 @@
 						</span>
 
                         <h3 class="tit3 t-center m-b-35 m-t-5">
-                            Welcome
+                            ${welcome}
                         </h3>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
                             Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia, nisl ante egestas mi, ac facilisis ligula sem id neque.
                         </p>
 
-                        <a href="about.html" class="txt4">
-                            Our Story
+                        <a href="Controller?command=gotomenupage" class="txt4">
+                            Our Menu
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
                     </div>

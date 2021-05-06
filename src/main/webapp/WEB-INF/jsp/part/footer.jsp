@@ -1,3 +1,4 @@
+<%@ taglib prefix="ctg" uri="time" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -44,6 +45,9 @@
 
                     <li class="txt14">
                         Every Day
+                    </li>
+                    <li class="txt14">
+                        <ctg:info-time/>
                     </li>
                 </ul>
             </div>

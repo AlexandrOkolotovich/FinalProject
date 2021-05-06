@@ -17,6 +17,7 @@
     <fmt:message bundle="${loc}" key="main.lable.viewingDishes" var="viewingDishes"/>
     <fmt:message bundle="${loc}" key="main.lable.addDish" var="addDish"/>
     <fmt:message bundle="${loc}" key="main.lable.makeOrder" var="makeOrder"/>
+    <fmt:message bundle="${loc}" key="main.lable.viewOrders" var="viewOrders"/>
 </head>
 <body>
 
@@ -34,11 +35,12 @@
 
 <section>
     <div class="container" id="catalog">
+
         <c:if test="${sessionScope.userRole == 'ADMIN'}">
         <form action="Controller" method="post" >
             <a href="Controller?command=gotomenupage" class="txt4">${viewingDishes}</a><br/>
             <a href="Controller?command=gotoadddishpage" class="txt4">${addDish}</a><br /><br />
-            <a href="Controller?command=gotoalluserorderspage" class="txt4">Посмотреть заказы</a><br /><br/>
+            <a href="Controller?command=gotoalluserorderspage" class="txt4">${viewOrders}</a><br /><br/>
         </form>
             <br/>
         </c:if>
@@ -47,7 +49,7 @@
                 <a href="Controller?command=gotomenupage" class="txt4">${viewingDishes}</a><br/>
                 <a href="Controller?command=gotomakeorderpage" class="txt4">${makeOrder}</a><br/><br/>
 
-                <a href="Controller?command=gotouserorderspage" class="txt4">Посмотреть заказы</a><br/><br/>
+                <a href="Controller?command=gotouserorderspage" class="txt4">${viewOrders}</a><br/><br/>
             </form>
         </c:if>
     </div>

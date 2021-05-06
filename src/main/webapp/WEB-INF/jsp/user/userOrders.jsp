@@ -3,7 +3,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>orders</title>
+
+    <fmt:setLocale value="${sessionScope.locale}" />
+    <fmt:setBundle basename="locale" var="loc" />
+    <fmt:message bundle="${loc}" key="userorder.lable" var="userorder"/>
 </head>
 <body>
 <jsp:include page="../part/header.jsp"/>
@@ -12,7 +16,7 @@
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
          style="background-image: url(${pageContext.request.contextPath}/static/img/bg-title-page-02.jpg);">
     <h2 class="tit6 t-center">
-        My orders
+        ${userorder}
     </h2>
 </section>
 

@@ -21,7 +21,7 @@
   </servlet-mapping>
 
   <session-config>
-    <session-timeout>5</session-timeout>
+    <session-timeout>10</session-timeout>
   </session-config>
 
   <servlet>
@@ -67,6 +67,15 @@
   <listener>
     <listener-class>by.jwd.restaurant.controller.listener.ContextListener</listener-class>
   </listener>
+
+  <jsp-config>
+
+    <taglib>
+      <taglib-uri>time</taglib-uri>
+      <taglib-location>/tld/time.tld</taglib-location>
+    </taglib>
+
+  </jsp-config>
 
 </web-app>
 
