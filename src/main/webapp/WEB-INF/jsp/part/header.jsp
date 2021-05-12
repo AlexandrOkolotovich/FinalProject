@@ -97,7 +97,7 @@
                         <li>
                             <div class="dropdown choose-country">
                                 <a type="submit"  data-toggle="dropdown" href="">
-                                    <img src="${pageContext.request.contextPath}/static/img/flags/globus2.png" alt="language"/>
+                                    <img src="${pageContext.request.contextPath}/static/img/flags/globus4.png" alt="language"/>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="menuitem"><form action="Controller" class="locale" method="post">

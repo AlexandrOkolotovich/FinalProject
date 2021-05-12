@@ -11,11 +11,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class ChangeLocale implements Command {
-      private static final String PARAMETER_COMMAND = "command";
+    private static final String PARAMETER_COMMAND = "command";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
         session.setAttribute(SessionAttributes.LOCALE, request.getParameter(PARAMETER_COMMAND));
 
         String page;

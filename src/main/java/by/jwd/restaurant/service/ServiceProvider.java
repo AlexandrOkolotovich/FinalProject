@@ -1,8 +1,6 @@
 package by.jwd.restaurant.service;
 
-import by.jwd.restaurant.service.impl.DishServiceImpl;
-import by.jwd.restaurant.service.impl.OrderServiceImpl;
-import by.jwd.restaurant.service.impl.UserServiceImpl;
+import by.jwd.restaurant.service.impl.*;
 
 public final class ServiceProvider {
     private static final ServiceProvider instance = new ServiceProvider();
@@ -14,6 +12,10 @@ public final class ServiceProvider {
     private final DishService dishService = new DishServiceImpl();
 
     private final OrderService orderService = new OrderServiceImpl();
+
+    private final EmailService emailService = new EmailServiceImpl();
+
+    private final DrinkService drinkService = new DrinkServiceImpl();
 
     public static ServiceProvider getInstance() {
         return instance;
@@ -29,5 +31,13 @@ public final class ServiceProvider {
 
     public OrderService getOrderService() {
         return orderService;
+    }
+
+    public EmailService getEmailService() {
+        return emailService;
+    }
+
+    public DrinkService getDrinkService() {
+        return drinkService;
     }
 }

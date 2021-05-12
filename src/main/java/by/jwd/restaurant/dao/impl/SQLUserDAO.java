@@ -14,10 +14,16 @@ public class SQLUserDAO implements UserDAO {
     private static final String COLUMN_LABEL_USER_ID = "user_id";
     private static final String COLUMN_LABEL_USER_PASSWORD = "user_password";
     private static final String COLUMN_LABEL_USER_ROLE = "role_name";
+    private static final String COLUMN_LABEL_USER_NAME = "user_name";
+    private static final String COLUMN_LABEL_USER_SURNAME = "user_surname";
+    private static final String COLUMN_LABEL_USER_PHONE = "user_phone";
+    private static final String COLUMN_LABEL_USER_EMAIL = "user_email";
 
     private static final String SELECT_USER_EMAIL_PASSWORD = "SELECT users.user_id, role_name FROM users JOIN roles ON users.role_id=roles.role_id WHERE user_email = ? AND user_password = ?";
     private static final String SELECT_USER_ID = "SELECT user_id FROM users WHERE user_email = ? ";
     private static final String INSERT_REGISTRATION_USER = "INSERT INTO users (user_name, user_surname, user_phone, user_email, user_password, role_id) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SELECT_USER_PASSWORD = "SELECT user_password FROM users WHERE user_email = ?";
+    private static final String SELECT_USER = "SELECT users.user_id, users.user_name, users.user_surname, users.user_phone, users.user_email, users.user_password, role_name FROM users JOIN roles ON users.role_id=roles.role_id WHERE user_email = ?";
 
     static {
         MySQLDriverLoader.getInstance();
@@ -31,7 +37,7 @@ public class SQLUserDAO implements UserDAO {
         ResultSet resSet;
 
         Integer id;
-        String role_name;
+        String roleName;
         User user = null;
 
         try {
@@ -44,8 +50,8 @@ public class SQLUserDAO implements UserDAO {
             if(resSet.next()){
                 id = resSet.getInt(COLUMN_LABEL_USER_ID);
 
-                role_name = resSet.getString(COLUMN_LABEL_USER_ROLE);
-                Role role = Role.valueOf(role_name);
+                roleName = resSet.getString(COLUMN_LABEL_USER_ROLE);
+                Role role = Role.valueOf(roleName);
 
                 user = new User(id, login, password, role);
 
@@ -120,5 +126,74 @@ public class SQLUserDAO implements UserDAO {
             }
         }
         return id;
+    }
+
+    @Override
+    public String getPassword(String email) throws DAOException {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        Connection connection = null;
+        PreparedStatement prSt = null;
+        ResultSet resSet;
+
+        String password = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            prSt = connection.prepareStatement(SELECT_USER_PASSWORD);
+            prSt.setString(1, email);
+
+            resSet = prSt.executeQuery();
+            if (resSet.next()) {
+                password = resSet.getString(COLUMN_LABEL_USER_PASSWORD);
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, prSt);
+            }catch (ConnectionPoolException e){
+                throw new DAOException(e);
+            }
+        }
+
+        return password;
+    }
+
+    @Override
+    public User getUser(String email) throws DAOException {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        Connection connection = null;
+        PreparedStatement prSt = null;
+        ResultSet resSet;
+
+        User user = new User();
+
+        try {
+            connection = connectionPool.takeConnection();
+            prSt = connection.prepareStatement(SELECT_USER);
+            prSt.setString(1, email);
+
+            resSet = prSt.executeQuery();
+            while (resSet.next()) {
+                user.setId(resSet.getInt(COLUMN_LABEL_USER_ID));
+                user.setName(resSet.getString(COLUMN_LABEL_USER_NAME));
+                user.setSurname(resSet.getString(COLUMN_LABEL_USER_SURNAME));
+                user.setPhone(resSet.getString(COLUMN_LABEL_USER_PHONE));
+                user.setEmail(resSet.getString(COLUMN_LABEL_USER_EMAIL));
+                user.setPassword(resSet.getString(COLUMN_LABEL_USER_PASSWORD));
+                user.setRole(Role.valueOf(resSet.getString(COLUMN_LABEL_USER_ROLE)));
+
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            try {
+                connectionPool.closeConnection(connection, prSt);
+            }catch (ConnectionPoolException e){
+                throw new DAOException(e);
+            }
+        }
+
+        return user;
     }
 }

@@ -1,11 +1,12 @@
 package by.jwd.restaurant.entity;
 
-public class RegistrationInfo {
+public class RegistrationInfo extends User{
     private String name;
     private String surname;
     private String phone;
     private String email;
     private String password;
+    private String repeatPassword;
     private Integer roleId;
 
     public RegistrationInfo() {
@@ -17,6 +18,24 @@ public class RegistrationInfo {
         this.phone = phone;
         this.email = email;
         this.password = password;
+    }
+
+    public RegistrationInfo(String name, String surname, String phone, String email, String password, String repeatPassword) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.repeatPassword = repeatPassword;
+    }
+
+    public RegistrationInfo(String name, String surname, String phone, String email, String password, Integer roleId) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.roleId = roleId;
     }
 
     public String getName() {
@@ -57,6 +76,14 @@ public class RegistrationInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 
     public Integer getRoleId() {

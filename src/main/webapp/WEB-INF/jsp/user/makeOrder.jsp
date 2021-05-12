@@ -13,6 +13,7 @@
     <fmt:message bundle="${loc}" key="makeorder.deleteButton" var="deleteButton"/>
     <fmt:message bundle="${loc}" key="makeorder.lable.date" var="date"/>
     <fmt:message bundle="${loc}" key="makeorder.lable.totalPrice" var="totalPrice"/>
+    <fmt:message bundle="${loc}" key="currency.byn" var="byn"/>
 </head>
 <body>
 <jsp:include page="../part/header.jsp"/>
@@ -52,7 +53,7 @@
                         </span>
 
                         <span class="txt22 m-t-20">
-                            ${dishes.price} BYN
+                            ${dishes.price} ${byn}
                     </span>
                         <span>
                             <button form="deleteDish" class="btn btn-danger delete2" type="submit"
@@ -73,7 +74,7 @@
             </div>
             <span class="txt22 m-t-20">
         ${totalPrice}
-                <c:out value="${sessionScope.totalPrice}" /> BYN
+                <c:out value="${sessionScope.totalPrice}" /> ${byn}
 
     </span>
             <br/>

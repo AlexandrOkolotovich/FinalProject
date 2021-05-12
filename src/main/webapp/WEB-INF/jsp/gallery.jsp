@@ -1,7 +1,17 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Gallery</title>
+
+    <fmt:setLocale value="${sessionScope.locale}" />
+    <fmt:setBundle basename="locale" var="loc" />
+    <fmt:message bundle="${loc}" key="gallery.lable" var="lable"/>
+    <fmt:message bundle="${loc}" key="gallery.allphoto" var="allphoto"/>
+    <fmt:message bundle="${loc}" key="gallery.interior" var="interior"/>
+    <fmt:message bundle="${loc}" key="gallery.food" var="food"/>
+    <fmt:message bundle="${loc}" key="gallery.events" var="events"/>
+    <fmt:message bundle="${loc}" key="gallery.vipguests" var="vipguests"/>
 </head>
 <body class="animsition">
 <jsp:include page="part/header.jsp"/>
@@ -9,7 +19,7 @@
 <!-- Title Page -->
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(${pageContext.request.contextPath}/static/img/bg-title-page-02.jpg);">
     <h2 class="tit6 t-center">
-        Gallery
+        ${lable}
     </h2>
 </section>
 
@@ -17,23 +27,23 @@
 <div class="section-gallery p-t-118 p-b-100">
     <div class="wrap-label-gallery filter-tope-group size27 flex-w flex-sb-m m-l-r-auto flex-col-c-sm p-l-15 p-r-15 m-b-60">
         <button class="label-gallery txt26 trans-0-4 is-actived" data-filter="*">
-            All Photo
+            ${allphoto}
         </button>
 
         <button class="label-gallery txt26 trans-0-4" data-filter=".interior">
-            Interior
+            ${interior}
         </button>
 
         <button class="label-gallery txt26 trans-0-4" data-filter=".food">
-            Food
+            ${food}
         </button>
 
         <button class="label-gallery txt26 trans-0-4" data-filter=".events">
-            Events
+            ${events}
         </button>
 
         <button class="label-gallery txt26 trans-0-4" data-filter=".guests">
-            Vip guests
+            ${vipguests}
         </button>
     </div>
 

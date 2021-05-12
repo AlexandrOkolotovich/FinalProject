@@ -34,6 +34,13 @@ public class CommandProvider {
         commands.put(CommandName.GOTOUSERORDERSPAGE, new GoToUserOrdersPage());
         commands.put(CommandName.GOTOALLUSERORDERSPAGE, new GoToAllUserOrdersPage());
         commands.put(CommandName.DELETEDISHINORDER, new DeleteDishInOrder());
+        commands.put(CommandName.SEARCHDISH, new SearchDish());
+        commands.put(CommandName.SORTDISHBYTITLE, new SortDish());
+        commands.put(CommandName.SORTDISHBYPRICEUP, new SortDish());
+        commands.put(CommandName.SORTDISHBYPRICEDOWN, new SortDish());
+        commands.put(CommandName.GOTOPASSWORDRECOVERYPAGE, new GoToPasswordRecoveryPage());
+        commands.put(CommandName.PASSWORDRECOVERY, new PasswordRecovery());
+        commands.put(CommandName.GOTOPERSONALACCOUNTPAGE, new GoToPersonalAccountPage());
     }
 
     public Command takeCommand(String name){

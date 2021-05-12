@@ -1,8 +1,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>menu</title>
+
+    <fmt:setLocale value="${sessionScope.locale}"/>
+    <fmt:setBundle basename="locale" var="loc"/>
+    <fmt:message bundle="${loc}" key="menu.lable" var="lable"/>
+    <fmt:message bundle="${loc}" key="menu.search" var="search"/>
+    <fmt:message bundle="${loc}" key="menu.sorting" var="sorting"/>
+    <fmt:message bundle="${loc}" key="menu.alphabetically" var="alphabetically"/>
+    <fmt:message bundle="${loc}" key="menu.price" var="price"/>
+    <fmt:message bundle="${loc}" key="makeorder.lable.calorieContent" var="calorieContent"/>
+    <fmt:message bundle="${loc}" key="currency.byn" var="byn"/>
+    <fmt:message bundle="${loc}" key="menu.notavailable" var="notavailable"/>
+    <fmt:message bundle="${loc}" key="menu.update" var="update"/>
+    <fmt:message bundle="${loc}" key="menu.delete" var="delete"/>
+    <fmt:message bundle="${loc}" key="menu.toorder" var="toorder"/>
 </head>
 <body>
 <jsp:include page="part/header.jsp"/>
@@ -11,28 +26,60 @@
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
          style="background-image: url(${pageContext.request.contextPath}/static/img/bg-title-page-01.jpg);">
     <h2 class="tit6 t-center">
-        Menu
+        ${lable}
     </h2>
 </section>
-<!--
-<section style="padding-left: 50px">
-    <input placeholder="Search" style="width: 400px" class="bo-rad-10 txt36 p-l-20 size17">
-</section>
-
-<section style="padding-left: 50px" >
-    <select style="width: 200px" class="bo-rad-7 txt32 p-l-20 size1">
-        <option>По алфавиту</option>
-        <option>Цена ↑</option>
-        <option>Цена ↓</option>
-    </select>
-</section>
-<br>-->
 
 <section class="section-lunch bgwhite">
     <div class="container">
+        <div class="row p-t-108 p-b-20">
+            <div class="col-md-8 col-lg-6 m-l-r-auto">
+                <form action="Controller" method="post">
+                    <input type="hidden" name="command" value="searchdish"/>
+                    <form name="search">
+                        <input placeholder="Search title" name="searchTitle" style="width: 400px"
+                               class="bo-rad-10 txt36 p-l-20 size17">
+                        <button type="submit" class="btn3 size1 txt11 trans-0-4">${search}</button>
+                    </form>
+                    <br/>
+                    <form name="sort">
+
+                        <div class="dropdown">
+                            <button class="btn  dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                ${sorting}
+                            </button>
+                            <div class="dropdown-menu" id="dropdown-menu3" aria-labelledby="dropdownMenu2">
+                                <ul>
+                                    <li>
+                                        <form action="Controller" method="post">
+                                            <input type="hidden" name="command" value="sortdishbytitle"/>
+                                            <button class="dropdown-item" type="submit">${alphabetically}</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="Controller" method="post">
+                                            <input type="hidden" name="command" value="sortdishbypriceup"/>
+                                            <button class="dropdown-item" type="submit">${price} ↑</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="Controller" method="post">
+                                            <input type="hidden" name="command" value="sortdishbypricedown"/>
+                                            <button class="dropdown-item" type=submit">${price} ↓</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </form>
+                </form>
+            </div>
+        </div>
 
         <c:if test="${sessionScope.userRole == 'ADMIN'}">
-            <div class="row p-t-108 p-b-70">
+            <div class="row p-t-60 p-b-70">
                 <div class="col-md-8 col-lg-6 m-l-r-auto">
                     <c:forEach items="${requestScope.dishes}" var="dishes">
 
@@ -56,24 +103,24 @@
 
                                 <span class="txt23">
                                     ${dishes.description}<br/>
-                                    Calorie content: ${dishes.calorieContent} <br/>
+                                    ${calorieContent} ${dishes.calorieContent} <br/>
 							    </span>
 
                                 <span class="txt22 m-t-20">
-                                    ${dishes.price} BYN
+                                    ${dishes.price} ${byn}
 							    </span>
 
                                 <span class="txt24">
                                     <c:if test="${dishes.available == false}">
-                                        Isn't available
+                                        ${notavailable}
                                     </c:if>
                                 </span>
                                 <span>
                                     <button form="updateDish" class="btn btn-success show2" type="submit"
-                                            value="${dishes.id}" name="dishId">Update</button>
+                                            value="${dishes.id}" name="dishId">${update}</button>
                                     <c:if test="${dishes.available == true}">
                                         <button form="deleteDish" class="btn btn-danger delete2" type="submit"
-                                        value="${dishes.id}" name="dishId">Delete</button>
+                                                value="${dishes.id}" name="dishId">${delete}</button>
                                     </c:if>
                                 </span>
                             </div>
@@ -85,7 +132,7 @@
             </div>
         </c:if>
         <c:if test="${sessionScope.userRole != 'ADMIN'}">
-            <div class="row p-t-108 p-b-70">
+            <div class="row p-t-60 p-b-70">
                 <div class="col-md-8 col-lg-6 m-l-r-auto">
                     <c:forEach items="${requestScope.dishes}" var="dishes">
                         <c:if test="${dishes.available == true}">
@@ -105,15 +152,16 @@
 
                                     <span class="txt23">
                                     ${dishes.description}<br/>
-                                    Calorie content: ${dishes.calorieContent}
+                                    ${calorieContent} ${dishes.calorieContent}
 							    </span>
 
                                     <span class="txt22 m-t-20">
-                                    ${dishes.price} BYN
+                                    ${dishes.price} ${byn}
 							    </span>
                                     <span>
                                     <c:if test="${sessionScope.userRole == 'USER'}">
-                                        <button form="addToOrder" class="btn btn-success delete2" type="submit" value="${dishes.id}" name="dishId">To order</button>
+                                        <button form="addToOrder" class="btn btn-success delete2" type="submit"
+                                                value="${dishes.id}" name="dishId">${toorder}</button>
                                     </c:if>
                                 </span>
                                 </div>

@@ -14,6 +14,7 @@
     <fmt:message bundle="${loc}" key="adddish.lable.isAvailable" var="isAvailable"/>
     <fmt:message bundle="${loc}" key="adddish.lable.picturePath" var="picturePath"/>
     <fmt:message bundle="${loc}" key="adddish.button" var="adddishButton"/>
+    <fmt:message bundle="${loc}" key="currency.byn" var="byn"/>
 </head>
 <body>
 <jsp:include page="../part/header.jsp"/>
@@ -34,7 +35,7 @@
         ${description}:<br />
         <textarea name="description" cols="50" rows="5" class="bo-rad-10 txt36 p-l-20" ></textarea><br/>
         ${price}:<br />
-        <input type="text" name="price" class="bo-rad-10 txt36 p-l-20 size1" value="" /> BYN<br />
+        <input type="text" name="price" class="bo-rad-10 txt36 p-l-20 size1" value="" /> ${byn}<br />
         ${calorieContent}:<br />
         <input type="text" name="calorieContent" class="bo-rad-10 txt36 p-l-20 size1" value="" /><br />
         ${isAvailable}:<br />
@@ -46,7 +47,7 @@
     </form>
 </center>
 
-<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<!--<script src="//code.jquery.com/jquery-1.9.1.js"></script> -->
 <script type="text/javascript">
     function chgFlag(isChecked){
         console.log('isChecked: '+isChecked);

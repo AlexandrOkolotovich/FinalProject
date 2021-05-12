@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -7,6 +8,19 @@
     <fmt:setBundle basename="locale" var="loc" />
     <fmt:message bundle="${loc}" key="home.lable.welcome" var="welcome"/>
     <fmt:message bundle="${loc}" key="home.lable.lookmenu" var="lookmenu"/>
+    <fmt:message bundle="${loc}" key="aboutus.namerestaurant" var="namerestaurant"/>
+    <fmt:message bundle="${loc}" key="home.ourmenu" var="ourmenu"/>
+    <fmt:message bundle="${loc}" key="home.discover" var="discover"/>
+    <fmt:message bundle="${loc}" key="home.romanticrestaurant" var="romanticrestaurant"/>
+    <fmt:message bundle="${loc}" key="home.learnmore" var="learnmore"/>
+    <fmt:message bundle="${loc}" key="home.deliciousfood" var="deliciousfood"/>
+    <fmt:message bundle="${loc}" key="home.redwines" var="redwines"/>
+    <fmt:message bundle="${loc}" key="home.lunch" var="lunch"/>
+    <fmt:message bundle="${loc}" key="home.dinner" var="dinner"/>
+    <fmt:message bundle="${loc}" key="home.happyhour" var="happyhour"/>
+    <fmt:message bundle="${loc}" key="home.drink" var="drink"/>
+    <fmt:message bundle="${loc}" key="home.starters" var="starters"/>
+    <fmt:message bundle="${loc}" key="home.dessert" var="dessert"/>
 </head>
 <body>
     <jsp:include page="part/header.jsp"/>
@@ -85,7 +99,7 @@
                 <div class="col-md-6 p-t-45 p-b-30">
                     <div class="wrap-text-welcome t-center">
 						<span class="tit2 t-center">
-							Italian Restaurant
+							${namerestaurant}
 						</span>
 
                         <h3 class="tit3 t-center m-b-35 m-t-5">
@@ -97,7 +111,7 @@
                         </p>
 
                         <a href="Controller?command=gotomenupage" class="txt4">
-                            Our Menu
+                            ${ourmenu}
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -116,7 +130,7 @@
     <section class="section-intro">
         <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(${pageContext.request.contextPath}/static/img/bg-intro-01.jpg);">
 			<span class="tit2 p-l-15 p-r-15">
-				Discover
+				${discover}
 			</span>
 
             <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
@@ -136,7 +150,7 @@
 
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                    Romantic Restaurant
+                                    ${romanticrestaurant}
                                 </h4></a>
 
                                 <p class="m-b-20">
@@ -144,7 +158,7 @@
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    ${learnmore}
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -160,7 +174,7 @@
 
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                    Delicious Food
+                                    ${deliciousfood}
                                 </h4></a>
 
                                 <p class="m-b-20">
@@ -168,7 +182,7 @@
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    ${learnmore}
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -184,7 +198,7 @@
 
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                    Red Wines You Love
+                                    ${redwines}
                                 </h4></a>
 
                                 <p class="m-b-20">
@@ -192,7 +206,7 @@
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    ${learnmore}
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -209,11 +223,11 @@
         <div class="container">
             <div class="title-section-ourmenu t-center m-b-22">
 				<span class="tit2 t-center">
-					Discover
+					${discover}
 				</span>
 
                 <h3 class="tit5 t-center m-t-2">
-                    Our Menu
+                    ${ourmenu}
                 </h3>
             </div>
 
@@ -227,7 +241,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size4">
-                                    Lunch
+                                    ${lunch}
                                 </a>
                             </div>
                         </div>
@@ -239,7 +253,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size5">
-                                    Dinner
+                                    ${dinner}
                                 </a>
                             </div>
                         </div>
@@ -251,7 +265,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size6">
-                                    Happy Hour
+                                    ${happyhour}
                                 </a>
                             </div>
                         </div>
@@ -267,7 +281,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size7">
-                                    Drink
+                                    ${drink}
                                 </a>
                             </div>
                         </div>
@@ -279,7 +293,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size8">
-                                    Starters
+                                    ${starters}
                                 </a>
                             </div>
                         </div>
@@ -291,7 +305,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size9">
-                                    Dessert
+                                    ${dessert}
                                 </a>
                             </div>
                         </div>

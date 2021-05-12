@@ -1606,11 +1606,16 @@ body {padding-right: 0px !important;}
 }
 
 .dropdown-menu {
-  background-color: #222;
+
   background-color: rgba(34, 34, 34, 0.8);
   margin-top: 5px;
-  
 }
+
+#dropdown-menu3 {
+  background-color: #fff;
+  margin-top: 5px;
+}
+
 .dropdown-menu li {
   float: none;
 }

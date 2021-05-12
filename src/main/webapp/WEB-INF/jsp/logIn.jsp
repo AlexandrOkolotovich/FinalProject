@@ -16,6 +16,8 @@
     <fmt:message bundle="${loc}" key="signin.lable.password" var="password"/>
     <fmt:message bundle="${loc}" key="signin.button" var="login"/>
     <fmt:message bundle="${loc}" key="signin.path.signup" var="signup"/>
+    <fmt:message bundle="${loc}" key="signin.path.restorepassword" var="resstorepassword"/>
+    <fmt:message bundle="${loc}" key="message.signinerror" var="signinerror"/>
 </head>
 <body>
 <jsp:include page="part/header.jsp"/>
@@ -35,13 +37,18 @@
     <form action="Controller" method="post" >
        <input type="hidden" name="command" value="logIn" />
         ${email}:
-        <br /> <input type="email" class="bo-rad-10 txt36 p-l-20 size17" name="email" pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,6}$" value="" /><br />
+        <br /> <input type="email" class="bo-rad-10 txt36 p-l-20 size17" name="email" pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,6}$" value="" /><br /><br>
        ${password}:
         <br /> <input type="password" class="bo-rad-10 txt36 p-l-20 size17" name="password" pattern="^[a-zA-Z0-9]{6,15}$" value="" /><br />
         <br />
+        <c:if test="${requestScope.errorLogin != null}">
+            <p><font color="red">${signinerror}</font></p>
+        </c:if>
+        <br/>
         <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">${login} </button><br />
         <br />
         <a href="Controller?command=registration" class="txt4">${signup}</a><br/><br/>
+        <a href="Controller?command=gotopasswordrecoverypage" class="txt4">${resstorepassword}</a><br/><br/>
     </form>
 </div>
 </setction>

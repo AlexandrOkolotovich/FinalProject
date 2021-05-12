@@ -8,6 +8,7 @@
     <fmt:setLocale value="${sessionScope.locale}" />
     <fmt:setBundle basename="locale" var="loc" />
     <fmt:message bundle="${loc}" key="userorder.lable" var="userorder"/>
+    <fmt:message bundle="${loc}" key="currency.byn" var="byn"/>
 </head>
 <body>
 <jsp:include page="../part/header.jsp"/>
@@ -41,12 +42,12 @@
 
                             <span class="txt22">
                             <c:forEach items="${orders.dishes}" var="dish">
-                                ${dish.title} - ${dish.price} BUN <br/>
+                                ${dish.title} - ${dish.price} ${byn} <br/>
                             </c:forEach>
                             </span>
 
                             <span class="txt22 m-t-20">
-                                    ${orders.totalPrice} BYN
+                                    ${orders.totalPrice} ${byn}
 							    </span>
                                 <br/><br/>
                         </div>

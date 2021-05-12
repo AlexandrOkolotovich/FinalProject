@@ -11,6 +11,7 @@ public final class SessionAttributes {
     public static final String ATTRIBUTE_DISHES = "dishes";
     public static final String ATTRIBUTE_ORDERS = "orders";
     public static final String ATTRIBUTE_DISH_TITLES = "dishTitles";
+    public static final String ATTRIBUTE_USER = "user";
     public static final String ATTRIBUTE_ORDER_ID = "orderId";
     public static final String ATTRIBUTE_DISH_ID = "dishId";
     public static final String ATTRIBUTE_DATE = "date";
@@ -26,6 +27,7 @@ public final class SessionAttributes {
     public static final String ATTRIBUTE_PHONE = "phone";
     public static final String ATTRIBUTE_EMAIL = "email";
     public static final String ATTRIBUTE_PASSWORD = "password";
+    public static final String ATTRIBUTE_REPEAT_PASSWORD = "repeatPassword";
 
     public static final String ATTRIBUTE_USER_ID = "userId";
     public static final String ATTRIBUTE_USER_ROLE = "userRole";

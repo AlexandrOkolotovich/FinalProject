@@ -15,16 +15,17 @@ import java.sql.Statement;
 
 public class SQLUserDAOTest {
 
-    private static final String NEW_NAME = "Имя";
-    private static final String NEW_SURNAME = "Фамилия";
-    private static final String NEW_PHONE = "+375333333333";
-    private static final String NEW_EMAIL = "test@mail.ru";
-    private static final String NEW_PASSWORD = "123456";
-    private static final String WRONG_NAME = "Alex";
-    private static final long USER_ID = 1L;
+    private static final String NEW_NAME = "Алексеев";
+    private static final String NEW_SURNAME = "Алексей";
+    private static final String NEW_PHONE = "+375294444444";
+    private static final String NEW_EMAIL = "test5@mail.ru";
+    private static final String NEW_PASSWORD = "zxcvbnm";
+    private static final Integer NEW_ROLE_ID = 2;
+    private static final Integer WRONG_ROLE_ID = 4;
+    private static final Integer USER_ID = 4;
     private static final String USER_EMAIL = "shepelevich@mail.ru";
 
-    private static final String SELECT_NEW_USER_SQL = "SELECT user_id FROM users WHERE user_email='test@mail.ru'";
+    private static final String SELECT_NEW_USER_SQL = "SELECT user_id FROM users WHERE user_email='test5@mail.ru'";
 
     private static final UserDAO userDAO = DAOProvider.getInstance().getUserDAO();
 
@@ -40,7 +41,7 @@ public class SQLUserDAOTest {
 
     @Test
     public void createTest() throws DAOException, SQLException, ConnectionPoolException {
-        RegistrationInfo registrationInfo = new RegistrationInfo(NEW_NAME, NEW_SURNAME, NEW_PHONE, NEW_EMAIL, NEW_PASSWORD);
+        RegistrationInfo registrationInfo = new RegistrationInfo(NEW_NAME, NEW_SURNAME, NEW_PHONE, NEW_EMAIL, NEW_PASSWORD, NEW_ROLE_ID);
         userDAO.registration(registrationInfo);
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
@@ -52,17 +53,16 @@ public class SQLUserDAOTest {
 
     @Test(expected = DAOException.class)
     public void createNegativeTest() throws DAOException {
-        RegistrationInfo registrationInfo = new RegistrationInfo(WRONG_NAME, NEW_SURNAME, NEW_PHONE, NEW_EMAIL, NEW_PASSWORD);
+        RegistrationInfo registrationInfo = new RegistrationInfo(NEW_NAME, NEW_SURNAME, NEW_PHONE, NEW_EMAIL, NEW_PASSWORD, WRONG_ROLE_ID);
         userDAO.registration(registrationInfo);
     }
 
     @Test
     public void findIdTest1() throws DAOException {
-        Long expected = USER_ID;
-        Long actual = Long.valueOf(userDAO.findId(USER_EMAIL));
+        Integer expected = USER_ID;
+        Integer actual = userDAO.findId(USER_EMAIL);
 
         Assert.assertEquals(expected, actual);
     }
-
 
 }

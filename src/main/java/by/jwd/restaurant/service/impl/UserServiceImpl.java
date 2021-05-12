@@ -34,23 +34,58 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registration(RegistrationInfo user) throws ServiceException {
-        if(user == null || !validateRegistrationInfo(user) || !freeLogin(user.getEmail())){
+    public User registration(RegistrationInfo regInfo) throws ServiceException {
+        if(regInfo == null || !validateRegistrationInfo(regInfo) || !freeLogin(regInfo.getEmail())){
             throw new ServiceException("wrong registration");
         }
 
         DAOProvider provider = DAOProvider.getInstance();
         UserDAO userDAO = provider.getUserDAO();
 
-        user.setRoleId(USER_ROLE_ID);
+        regInfo.setRoleId(USER_ROLE_ID);
+
+        User user;
 
         try {
-            userDAO.registration(user);
+            userDAO.registration(regInfo);
+            user = userDAO.getUser(regInfo.getEmail());
         } catch (DAOException e) {
             throw new ServiceException("Registration exception", e);
         }
 
-        return true;
+        return user;
+    }
+
+    @Override
+    public String getUserPassword(String email) throws ServiceException {
+        String password;
+
+        DAOProvider provider = DAOProvider.getInstance();
+        UserDAO userDAO = provider.getUserDAO();
+
+        try {
+            password = userDAO.getPassword(email);
+        } catch (DAOException e) {
+            throw new ServiceException("get password exception", e);
+        }
+
+        return password;
+    }
+
+    @Override
+    public User getPersonalAccount(String email) throws ServiceException {
+        User user;
+
+        DAOProvider provider = DAOProvider.getInstance();
+        UserDAO userDAO = provider.getUserDAO();
+
+        try {
+            user = userDAO.getUser(email);
+        } catch (DAOException e) {
+            throw new ServiceException("get password exception", e);
+        }
+
+        return user;
     }
 
     private boolean freeLogin(String login) throws ServiceException {
@@ -94,6 +129,9 @@ public class UserServiceImpl implements UserService {
         }
         if(!UserValidator.validatePassword(user.getPassword())){
             throw new ServiceException("wrong password");
+        }
+        if(!UserValidator.validateRepeatPassword(user.getRepeatPassword(), user.getPassword())){
+            throw new ServiceException("wrong passwords not repeat");
         }
 
         return true;

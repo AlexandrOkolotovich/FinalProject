@@ -12,6 +12,7 @@
     <fmt:message bundle="${loc}" key="userorders.lable.time" var="time"/>
     <fmt:message bundle="${loc}" key="userorders.lable.dishes" var="dishes"/>
     <fmt:message bundle="${loc}" key="userorders.lable.price" var="price"/>
+    <fmt:message bundle="${loc}" key="currency.byn" var="byn"/>
 </head>
 <body>
 <jsp:include page="../part/header.jsp"/>
@@ -43,10 +44,10 @@
                             <td>${orders.time}</td>
                             <td>
                             <c:forEach items="${orders.dishes}" var="dish">
-                                ${dish.title} - ${dish.price} BUN <br/>
+                                ${dish.title} - ${dish.price} ${byn} <br/>
                             </c:forEach>
                             </td>
-                            <td>${orders.totalPrice} BYN</td>
+                            <td>${orders.totalPrice} ${byn}</td>
 
                     </tr><br/>
                         </c:if>

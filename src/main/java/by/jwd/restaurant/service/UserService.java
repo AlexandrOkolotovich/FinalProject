@@ -6,5 +6,7 @@ import by.jwd.restaurant.service.exception.ServiceException;
 
 public interface UserService {
     User authorization(String login, String password) throws ServiceException;
-    boolean registration(RegistrationInfo user) throws ServiceException;
+    User registration(RegistrationInfo user) throws ServiceException;
+    String getUserPassword(String email) throws ServiceException;
+    User getPersonalAccount(String email) throws ServiceException;
 }

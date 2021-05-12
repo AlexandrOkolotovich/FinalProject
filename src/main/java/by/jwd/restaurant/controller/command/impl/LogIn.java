@@ -8,6 +8,7 @@ import by.jwd.restaurant.service.exception.ServiceException;
 import by.jwd.restaurant.service.ServiceProvider;
 import by.jwd.restaurant.service.UserService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,8 @@ public class LogIn implements Command {
         login = request.getParameter(LOGIN_EMAIL);
         password = request.getParameter(LOGIN_PASSWORD);
 
+        HttpSession session = request.getSession();
+
         ServiceProvider provider = ServiceProvider.getInstance();
         UserService userService = provider.getUserService();
 
@@ -36,11 +39,13 @@ public class LogIn implements Command {
             user = userService.authorization(login, password);
 
             if (user == null) {
-                response.sendRedirect("Controller?command=gotologinpage&message=wrong2");
+                request.setAttribute("errorLogin", "error");
+                session.setAttribute(SessionAttributes.PAGE, "Controller?command=gotologinpage");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logIn.jsp");
+                requestDispatcher.forward(request, response);
                 return;
             }
 
-            HttpSession session = request.getSession(true);
             session.setAttribute(SessionAttributes.ATTRIBUTE_USER_ROLE, user.getRole());
             session.setAttribute(SessionAttributes.ATTRIBUTE_USER_ID, user.getId());
             session.setAttribute(SessionAttributes.ATTRIBUTE_USER_EMAIL, user.getEmail());
@@ -48,7 +53,10 @@ public class LogIn implements Command {
             response.sendRedirect("Controller?command=gotomainpage");
 
         } catch (ServiceException e) {
-            response.sendRedirect("Controller?command=gotologinpage&message=wrong in catch");
+            request.setAttribute("errorLogin", "error");
+            session.setAttribute(SessionAttributes.PAGE, "Controller?command=gotologinpage");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logIn.jsp");
+            requestDispatcher.forward(request, response);
         }
     }
 }
